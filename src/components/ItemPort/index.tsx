@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useDrag } from 'react-dnd';
+import { Draggable } from 'react-beautiful-dnd';
 import Background from '@/components/elements/Background';
 import { context } from '../context';
 import { ItemConfig } from './entity';
@@ -13,7 +14,9 @@ interface Props {
 function ItemPort(props: Props) {
   const { data, index } = props;
   const { setCurrtntElement, setVisibleSideBar, removeElementFromTree } = useContext(context);
-  const [collectedProps, drag, preview] = useDrag<Comp.Element, unknown, any>({ item: data });
+  const [drag, preview] = useDrag<Comp.Element, unknown, any>({
+    item: { ...data, index },
+  });
 
   let children = <></>;
   switch (data.type) {
@@ -28,6 +31,7 @@ function ItemPort(props: Props) {
         setVisibleSideBar(true);
       }, 10);
     }
+
     function remove() {
       removeElementFromTree(data.id);
       setVisibleSideBar(false);
@@ -35,24 +39,33 @@ function ItemPort(props: Props) {
         setCurrtntElement(undefined);
       }, 500);
     }
+
     return (
-      <section ref={preview} className="editSection">
-        <section className="handler" ref={drag}>
-          <section className="title">
-            <Button icon="drag" type="link" />
-            <span className="text">
-              index:{index}, id:{data.id}
-            </span>
-          </section>
+      <Draggable key={data.id} draggableId={data.id} index={index}>
+        {(provided, snapshot) => (
+          <div ref={provided.innerRef} {...provided.draggableProps}>
+            <section ref={node => preview(node)} className="editSection">
+              <section className="handler">
+                <div ref={drag}>
+                  <Button icon="drag" type="link" />
+                </div>
 
-          <section className="toolBar">
-            <Button icon="form" type="link" onClick={edit} />
-            <Button icon="delete" type="link" onClick={remove} />
-          </section>
-        </section>
+                <section className="title" {...provided.dragHandleProps}>
+                  <span className="text">
+                    index:{index}, id:{data.id}
+                  </span>
+                </section>
 
-        {children}
-      </section>
+                <section className="toolBar">
+                  <Button icon="form" type="link" onClick={edit} />
+                  <Button icon="delete" type="link" onClick={remove} />
+                </section>
+              </section>
+              {children}
+            </section>
+          </div>
+        )}
+      </Draggable>
     );
   } else {
     return children;

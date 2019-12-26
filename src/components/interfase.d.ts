@@ -18,6 +18,7 @@ declare namespace Comp {
     editMode: boolean;
     children?: Array<Element>;
     props?: ElementProps;
+    index?: number;
   }
 
   /**

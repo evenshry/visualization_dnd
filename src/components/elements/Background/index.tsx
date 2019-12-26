@@ -1,5 +1,6 @@
 import React, { CSSProperties, useContext } from 'react';
 import { useDrop } from 'react-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 import { bgDraggingOver } from '@/components/elements/base';
 import { ItemConfig } from '@/components/ItemPort/entity';
 import ItemPort from '@/components/ItemPort';
@@ -13,11 +14,11 @@ function Background(props: Props) {
   const { data } = props;
   const { appendElementToTree, moveElementOnTree } = useContext(context);
 
-  const [{ isOver, isOverCurrent }, drop] = useDrop<Comp.Element, unknown, any>({
+  const [{ isOverCurrent }, drop] = useDrop<Comp.Element, unknown, any>({
     accept: ItemConfig.BACKGROUND,
     drop(item, monitor) {
       const didDrop = monitor.didDrop();
-      if (didDrop) {
+      if (didDrop || item.id === data.id) {
         return;
       }
       if (item.id) {
@@ -46,15 +47,23 @@ function Background(props: Props) {
   }
 
   return (
-    <section
-      ref={drop}
-      className="background"
-      style={isOverCurrent ? { ...style, ...bgDraggingOver } : style}
-    >
-      {data.children && data.children.length > 0
-        ? data.children.map((item, index) => <ItemPort data={item} key={index} index={index} />)
-        : null}
-    </section>
+    <Droppable droppableId="background" type={ItemConfig.BACKGROUND}>
+      {(provided, snapshot) => (
+        <section ref={provided.innerRef} {...provided.droppableProps} className="background">
+          <section
+            ref={drop}
+            className="background"
+            style={isOverCurrent ? { ...style, ...bgDraggingOver } : style}
+          >
+            {data.children && data.children.length > 0
+              ? data.children.map((item, index) => (
+                  <ItemPort data={item} key={index} index={index} />
+                ))
+              : null}
+          </section>
+        </section>
+      )}
+    </Droppable>
   );
 }
 
