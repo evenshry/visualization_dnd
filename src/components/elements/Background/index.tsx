@@ -28,7 +28,6 @@ function Background(props: Props) {
       }
     },
     collect: monitor => ({
-      isOver: monitor.isOver(),
       isOverCurrent: monitor.isOver({ shallow: true }),
     }),
   });
@@ -47,7 +46,7 @@ function Background(props: Props) {
   }
 
   return (
-    <Droppable droppableId="background" type={ItemConfig.BACKGROUND}>
+    <Droppable droppableId={data.id} type={data.id}>
       {(provided, snapshot) => (
         <section ref={provided.innerRef} {...provided.droppableProps} className="background">
           <section
@@ -60,6 +59,7 @@ function Background(props: Props) {
                   <ItemPort data={item} key={index} index={index} />
                 ))
               : null}
+            {provided.placeholder}
           </section>
         </section>
       )}

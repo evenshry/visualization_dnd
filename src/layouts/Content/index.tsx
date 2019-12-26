@@ -23,13 +23,12 @@ function Content() {
       }
     },
     collect: monitor => ({
-      isOver: monitor.isOver(),
       isOverCurrent: monitor.isOver({ shallow: true }),
     }),
   });
 
   return (
-    <Droppable droppableId="droppable" type="content">
+    <Droppable droppableId="root" type="content">
       {(provided, snapshot) => (
         <section ref={provided.innerRef} {...provided.droppableProps} className="drapCanvas">
           <section ref={drop} className="drapCanvas" style={isOverCurrent ? bgDraggingOver : {}}>
@@ -38,6 +37,7 @@ function Content() {
                   <ItemPort data={item} key={index} index={index} />
                 ))
               : null}
+            {provided.placeholder}
           </section>
         </section>
       )}

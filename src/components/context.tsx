@@ -3,6 +3,7 @@ import { elementsTypeConfig } from './DragItem/entity';
 import { ItemConfig } from './ItemPort/entity';
 import { elementsProps as BackgroundProps } from './elements/Background/entity';
 import { uuid } from '@/utils';
+import { DraggableLocation } from 'react-beautiful-dnd';
 
 interface Props {
   children?: ReactNode;
@@ -19,6 +20,7 @@ interface Injected {
   setVisibleSideBar: Dispatch<SetStateAction<boolean>>;
   appendElementToTree: (compTyle: string, nodeId?: string) => void;
   moveElementOnTree: (sourceId: string, targetId?: string) => void;
+  updateElementSortOnTree: (source: DraggableLocation, destination: DraggableLocation) => void;
   removeElementFromTree: (id: string) => void;
   updateElementStyle: (key: string, value: string) => void;
 }
@@ -92,6 +94,29 @@ export function CtxProvider({ children }: Props) {
       }
     }
   };
+  /**
+   * 更新节点顺序
+   */
+  const updateElementSortOnTree = (source: DraggableLocation, destination: DraggableLocation) => {
+    if (source.droppableId === 'root') {
+      const sourceNode = elementsTree[source.index];
+      elementsTree.splice(source.index, 1);
+      elementsTree.splice(destination.index, 0, sourceNode);
+      setElementsTree([...elementsTree]);
+    } else {
+      // 放置到指定位置
+      const newTree = recursionUpdateNode(elementsTree, source.droppableId, node => {
+        if (node.children && node.children.length > 0) {
+          const sourceNode = node.children[source.index];
+          node.children.splice(source.index, 1);
+          node.children.splice(destination.index, 0, sourceNode);
+          node.children = [...node.children];
+        }
+        return node;
+      });
+      setElementsTree([...newTree]);
+    }
+  };
 
   /**
    * 从组件节点树移除节点元素
@@ -126,6 +151,7 @@ export function CtxProvider({ children }: Props) {
     setVisibleSideBar,
     appendElementToTree,
     moveElementOnTree,
+    updateElementSortOnTree,
     removeElementFromTree,
     updateElementStyle,
   };

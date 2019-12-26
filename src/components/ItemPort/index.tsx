@@ -14,8 +14,11 @@ interface Props {
 function ItemPort(props: Props) {
   const { data, index } = props;
   const { setCurrtntElement, setVisibleSideBar, removeElementFromTree } = useContext(context);
-  const [drag, preview] = useDrag<Comp.Element, unknown, any>({
+  const [{ opacity }, drag, preview] = useDrag<Comp.Element, unknown, any>({
     item: { ...data, index },
+    collect: monitor => ({
+      opacity: monitor.isDragging() ? 0.4 : 1,
+    }),
   });
 
   let children = <></>;
@@ -43,12 +46,12 @@ function ItemPort(props: Props) {
     return (
       <Draggable key={data.id} draggableId={data.id} index={index}>
         {(provided, snapshot) => (
-          <div ref={provided.innerRef} {...provided.draggableProps}>
-            <section ref={node => preview(node)} className="editSection">
+          <section ref={provided.innerRef} {...provided.draggableProps}>
+            <section ref={preview} className="editSection" style={{ opacity }}>
               <section className="handler">
-                <div ref={drag}>
+                <section className="icon" ref={drag}>
                   <Button icon="drag" type="link" />
-                </div>
+                </section>
 
                 <section className="title" {...provided.dragHandleProps}>
                   <span className="text">
@@ -63,7 +66,7 @@ function ItemPort(props: Props) {
               </section>
               {children}
             </section>
-          </div>
+          </section>
         )}
       </Draggable>
     );

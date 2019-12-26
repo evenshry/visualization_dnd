@@ -111,6 +111,7 @@ body,
 .container {
   background-color: #fff;
   height: calc(100% - 50px);
+  overflow-y: auto;
   position: relative;
   .flexRow;
   .dragContainer {
@@ -125,11 +126,16 @@ body,
     .editSection {
       position: relative;
       margin: 20px;
+
       .handler {
         .flexRow;
+        align-items: center;
         background-color: var(--promary-color);
         .title {
           flex: 1;
+          height: 100%;
+          .flexRow;
+          align-items: center;
           .text {
             color: #fff;
           }
