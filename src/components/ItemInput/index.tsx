@@ -1,7 +1,7 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Input, InputNumber, Select } from 'antd';
-import { ChromePicker, ColorResult } from 'react-color';
 import { InputConfig, SelectConfig } from '@/components/ItemInput/entity';
+import ColorPicker from './ColorPicker';
 import { context } from '../context';
 
 const { Option } = Select;
@@ -14,46 +14,68 @@ function ItemInput(props: Props) {
   const { data } = props;
   const { updateElementStyle } = useContext(context);
 
-  function handleChange(event: any) {
+  /**
+   * 输入框 处理值
+   */
+  function handleInputChange(event: any) {
     const value: string = event.target.value;
-    data.key && updateElementStyle(data.key, value);
+    handleValueChange(value);
   }
 
-  function handleValueChange(value?: number) {
+  /**
+   * 字符串类型 处理值
+   */
+  function handleValueChange(value: string) {
+    if (data.key && value) {
+      updateElementStyle(data.key, value.toString());
+    }
+  }
+
+  /**
+   * 数字类型 处理值
+   */
+  function handleNumberChange(value?: number) {
     if (data.key && value !== undefined) {
       updateElementStyle(data.key, value.toString());
     }
   }
 
-  function handleColorChange(color: ColorResult) {
-    const rgba = color.rgb;
-    const result = `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`;
-    data.key && updateElementStyle(data.key, result);
-  }
-
+  /**
+   * 选择类型 处理值
+   */
   function handleSelectChange(value: string) {
-    data.key && updateElementStyle(data.key, value);
+    handleValueChange(value);
   }
 
   let inputContent = <Input />;
+
+  // 文本类型输入框
   if (data.type === InputConfig.String) {
-    inputContent = <Input value={data.value} onChange={handleChange} />;
-  } else if (data.type === InputConfig.Number) {
-    inputContent = <InputNumber value={data.value} min={0} onChange={handleValueChange} />;
-  } else if (data.type === InputConfig.Color) {
-    inputContent = (
-      <Select
-        suffixIcon={<div className="colorIcon" style={{ backgroundColor: data.value }} />}
-        dropdownRender={() => (
-          <ChromePicker color={data.value} onChangeComplete={handleColorChange} />
-        )}
-      />
-    );
-  } else if (data.type === InputConfig.Text) {
-    inputContent = <Input.TextArea value={data.value} rows={2} onChange={handleChange} />;
-  } else if (data.type === InputConfig.Image) {
-    inputContent = <Input value={data.value} onChange={handleChange} />;
-  } else {
+    inputContent = <Input value={data.value} onChange={handleInputChange} />;
+  }
+
+  // 数字类型输入框
+  else if (data.type === InputConfig.Number) {
+    inputContent = <InputNumber value={data.value} min={0} onChange={handleNumberChange} />;
+  }
+
+  // 颜色类型选择框
+  else if (data.type === InputConfig.Color) {
+    inputContent = <ColorPicker value={data.value} onChange={handleValueChange} />;
+  }
+
+  // 文本域类型输入框
+  else if (data.type === InputConfig.Text) {
+    inputContent = <Input.TextArea value={data.value} rows={2} onChange={handleInputChange} />;
+  }
+
+  // 图片类型选择框
+  else if (data.type === InputConfig.Image) {
+    inputContent = <Input value={data.value} onChange={handleInputChange} />;
+  }
+
+  // 其他类型选择框
+  else {
     inputContent = (
       <Select value={data.value} className="w100" onChange={handleSelectChange}>
         {SelectConfig[data.type].map((item, index) => (
@@ -64,6 +86,7 @@ function ItemInput(props: Props) {
       </Select>
     );
   }
+
   return (
     <section className="inputRow">
       <section className="label">{data.name}：</section>

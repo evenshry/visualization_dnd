@@ -112,12 +112,14 @@ body,
   background-color: #fff;
   height: calc(100% - 50px);
   position: relative;
+  .flexRow;
   .drapCanvas {
+    flex: 1;
     background-color: #f4f4f4;
     box-sizing: border-box;
     height: 100%;
     .drapCanvasInner {
-      overflow-y: auto;
+      overflow: auto;
       height: 100%;
       padding: 20px;
     }
@@ -163,10 +165,10 @@ body,
     }
   }
   .sideBar {
-    position: absolute;
+    position: relative;
     right: -300px;
     top: 0px;
-    width: 300px;
+    width: 0px;
     opacity: 0;
     transform: translate(0, 0);
     visibility: hidden;
@@ -175,6 +177,7 @@ body,
     transition: all 0.2s;
     &.show {
       opacity: 1;
+      width: 300px;
       transform: translate(-100%, 0);
       visibility: visible;
     }
@@ -206,6 +209,16 @@ body,
           height: 14px;
           background-color: #ff0000;
         }
+      }
+    }
+    .colorPickContainer {
+      width: 225px;
+      position: relative;
+      left: -80px;
+      .colorPickBtn {
+        position: absolute;
+        top: -35px;
+        right: 0px;
       }
     }
   }

@@ -45,7 +45,7 @@ function SideBar() {
     }
 
     return (
-      <section className={`sideBar ${visibleSideBar ? 'show' : ''}`}>
+      <section id="sideBarContainer" className={`sideBar ${visibleSideBar ? 'show' : ''}`}>
         <section className="toolBar">
           <Button
             icon={visibleSideBar ? 'double-right' : 'double-left'}

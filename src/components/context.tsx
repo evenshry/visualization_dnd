@@ -1,9 +1,9 @@
 import React, { createContext, ReactNode, useState, Dispatch, SetStateAction } from 'react';
+import { elementsProps as BackgroundProps } from './elements/Background/entity';
+import { DraggableLocation } from 'react-beautiful-dnd';
 import { elementsTypeConfig } from './DragItem/entity';
 import { ItemConfig } from './ItemPort/entity';
-import { elementsProps as BackgroundProps } from './elements/Background/entity';
 import { uuid } from '@/utils';
-import { DraggableLocation } from 'react-beautiful-dnd';
 
 interface Props {
   children?: ReactNode;
@@ -105,7 +105,9 @@ export function CtxProvider({ children }: Props) {
     }
   };
   /**
-   * 更新节点顺序
+   * 更新节点顺序（针对单个节点的子集）
+   * @param source 原节点位置
+   * @param destination 目标位置
    */
   const updateElementSortOnTree = (source: DraggableLocation, destination: DraggableLocation) => {
     if (source.droppableId === 'root') {
@@ -130,6 +132,7 @@ export function CtxProvider({ children }: Props) {
 
   /**
    * 从组件节点树移除节点元素
+   * @param sourceId 原节点ID
    */
   const removeElementFromTree = (sourceId: string) => {
     const newTree = recursionRemoveNode(elementsTree, sourceId);
@@ -138,6 +141,8 @@ export function CtxProvider({ children }: Props) {
 
   /**
    * 更新当前节点元素属性
+   * @param key 属性
+   * @param value 属性值
    */
   const updateElementStyle = (key: string, value: string) => {
     if (currtntElement) {
