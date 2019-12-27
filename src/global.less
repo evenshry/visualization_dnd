@@ -111,21 +111,19 @@ body,
 .container {
   background-color: #fff;
   height: calc(100% - 50px);
-  overflow-y: auto;
   position: relative;
-  .flexRow;
-  .dragContainer {
-    flex: 1;
-    height: 100%;
-  }
   .drapCanvas {
     background-color: #f4f4f4;
     box-sizing: border-box;
-    padding: 1px;
     height: 100%;
+    .drapCanvasInner {
+      overflow-y: auto;
+      height: 100%;
+      padding: 20px;
+    }
     .editSection {
       position: relative;
-      margin: 20px;
+      margin-bottom: 20px;
 
       .handler {
         .flexRow;
@@ -151,9 +149,17 @@ body,
         }
       }
     }
+    .dropPlaceholder {
+      height: 200px;
+      border: 1px dashed #999;
+      border-radius: 10px;
+    }
     .background {
-      min-height: 300px;
-      padding: 1px;
+      height: fit-content;
+      .backgroundInner {
+        min-height: 300px;
+        padding: 20px;
+      }
     }
   }
   .sideBar {

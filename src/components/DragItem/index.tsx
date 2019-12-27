@@ -7,7 +7,7 @@ interface Props {
 
 function DragItem(props: Props) {
   const { data } = props;
-  const [collectedProps, drag] = useDrag({ item: { type: data.type } });
+  const [, drag] = useDrag({ item: { type: data.type } });
   return (
     <section ref={drag} className="navItem">
       {data.name}

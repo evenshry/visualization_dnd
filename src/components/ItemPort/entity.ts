@@ -3,3 +3,5 @@ export const ItemConfig: {
 } = {
   BACKGROUND: 'background',
 };
+
+export const ItemConfigGroup: Array<string> = [ItemConfig.BACKGROUND];

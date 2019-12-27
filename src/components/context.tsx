@@ -18,8 +18,8 @@ interface Injected {
   setCurrtntElement: Dispatch<SetStateAction<Comp.Element | undefined>>;
   visibleSideBar?: boolean;
   setVisibleSideBar: Dispatch<SetStateAction<boolean>>;
-  appendElementToTree: (compTyle: string, nodeId?: string) => void;
-  moveElementOnTree: (sourceId: string, targetId?: string) => void;
+  appendElementToTree: (compTyle: string, index: number, nodeId?: string) => void;
+  moveElementOnTree: (sourceId: string, index: number, targetId?: string) => void;
   updateElementSortOnTree: (source: DraggableLocation, destination: DraggableLocation) => void;
   removeElementFromTree: (id: string) => void;
   updateElementStyle: (key: string, value: string) => void;
@@ -40,7 +40,7 @@ export function CtxProvider({ children }: Props) {
   /**
    * 添加元素到组件节点树
    */
-  const appendElementToTree = (compTyle: string, nodeId?: string) => {
+  const appendElementToTree = (compTyle: string, index: number, nodeId?: string) => {
     let background: Comp.Element = { ...BackgroundProps };
     switch (compTyle) {
       case ItemConfig.BACKGROUND:
@@ -50,10 +50,10 @@ export function CtxProvider({ children }: Props) {
     background.id = uuid();
     background.editMode = true;
     if (nodeId) {
-      // 放置到指定位置
+      // 放置到指定节点之指定位置
       const newTree = recursionUpdateNode(elementsTree, nodeId, node => {
         if (node.children && node.children.length > 0) {
-          node.children.push(background);
+          node.children.splice(index, 0, background);
         } else {
           node.children = [background];
         }
@@ -61,7 +61,12 @@ export function CtxProvider({ children }: Props) {
       });
       setElementsTree([...newTree]);
     } else {
-      elementsTree.push(background);
+      // 放置到根节点之指定位置
+      if (elementsTree.length > 0) {
+        elementsTree.splice(index, 0, background);
+      } else {
+        elementsTree.push(background);
+      }
       setElementsTree([...elementsTree]);
     }
   };
@@ -69,7 +74,7 @@ export function CtxProvider({ children }: Props) {
   /**
    * 移动元素在组件节点树
    */
-  const moveElementOnTree = (sourceId: string, targetId?: string) => {
+  const moveElementOnTree = (sourceId: string, index: number, targetId?: string) => {
     // 找到原节点 并删除
     let sourceNode: any = null;
     const tempTree = recursionRemoveNode(elementsTree, sourceId, node => {
@@ -78,10 +83,10 @@ export function CtxProvider({ children }: Props) {
     });
     if (sourceNode) {
       if (targetId) {
-        // 放置到指定位置
+        // 放置到指定节点之指定位置
         const newTree = recursionUpdateNode(tempTree, targetId, node => {
           if (node.children && node.children.length > 0) {
-            node.children.push(sourceNode);
+            node.children.splice(index, 0, sourceNode);
           } else {
             node.children = [sourceNode];
           }
@@ -89,7 +94,12 @@ export function CtxProvider({ children }: Props) {
         });
         setElementsTree([...newTree]);
       } else {
-        tempTree.push(sourceNode);
+        // 放置到根节点之指定位置
+        if (tempTree.length > 0) {
+          tempTree.splice(index, 0, sourceNode);
+        } else {
+          tempTree.push(sourceNode);
+        }
         setElementsTree([...tempTree]);
       }
     }

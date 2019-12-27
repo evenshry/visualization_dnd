@@ -29,9 +29,7 @@ function Index() {
       <DndProvider backend={Backend}>
         <Headers />
         <section className="container">
-          <section className="dragContainer">
-            <Content />
-          </section>
+          <Content />
           <SideBar />
         </section>
       </DndProvider>

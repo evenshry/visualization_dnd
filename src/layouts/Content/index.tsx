@@ -1,37 +1,26 @@
-import React, { useContext } from 'react';
-import { useDrop } from 'react-dnd';
+import React, { useContext, useRef } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
+import { useDropElement } from '@/hooks/useDropElement';
 import { bgDraggingOver } from '@/components/elements/base';
 import { context } from '@/components/context';
 import ItemPort from '@/components/ItemPort';
-import { ItemConfig } from '@/components/ItemPort/entity';
 
 function Content() {
-  const { elementsTree, appendElementToTree, moveElementOnTree } = useContext(context);
+  const { elementsTree } = useContext(context);
 
-  const [{ isOverCurrent }, drop] = useDrop<Comp.Element, unknown, any>({
-    accept: ItemConfig.BACKGROUND,
-    drop(item, monitor) {
-      const didDrop = monitor.didDrop();
-      if (didDrop) {
-        return;
-      }
-      if (item.id) {
-        moveElementOnTree(item.id);
-      } else {
-        appendElementToTree(item.type as string);
-      }
-    },
-    collect: monitor => ({
-      isOverCurrent: monitor.isOver({ shallow: true }),
-    }),
-  });
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { isOverCurrent } = useDropElement(ref);
 
   return (
-    <Droppable droppableId="root" type="content">
+    <Droppable droppableId="root" type="content" ignoreContainerClipping={true}>
       {(provided, snapshot) => (
         <section ref={provided.innerRef} {...provided.droppableProps} className="drapCanvas">
-          <section ref={drop} className="drapCanvas" style={isOverCurrent ? bgDraggingOver : {}}>
+          <section
+            ref={ref}
+            className="drapCanvasInner"
+            style={isOverCurrent ? bgDraggingOver : {}}
+          >
             {elementsTree && elementsTree.length > 0
               ? elementsTree.map((item, index) => (
                   <ItemPort data={item} key={index} index={index} />
