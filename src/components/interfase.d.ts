@@ -14,8 +14,8 @@ declare namespace Comp {
   interface Element {
     id: string;
     type: string;
-    name: string;
-    editMode: boolean;
+    name?: string;
+    editMode?: boolean;
     children?: Array<Element>;
     props?: ElementProps;
     index?: number;

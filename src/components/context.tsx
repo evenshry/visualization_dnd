@@ -1,9 +1,11 @@
 import React, { createContext, ReactNode, useState, Dispatch, SetStateAction } from 'react';
-import { elementsProps as BackgroundProps } from './elements/Background/entity';
 import { DraggableLocation } from 'react-beautiful-dnd';
 import { elementsTypeConfig } from './DragItem/entity';
 import { ItemConfig } from './ItemPort/entity';
 import { uuid } from '@/utils';
+
+import { BaseProps } from './elements/base';
+import { elementsProps as BackgroundProps } from './elements/Background/entity';
 
 interface Props {
   children?: ReactNode;
@@ -41,7 +43,7 @@ export function CtxProvider({ children }: Props) {
    * 添加元素到组件节点树
    */
   const appendElementToTree = (compTyle: string, index: number, nodeId?: string) => {
-    let background: Comp.Element = { ...BackgroundProps };
+    let background: Comp.Element = { ...BaseProps };
     switch (compTyle) {
       case ItemConfig.BACKGROUND:
         background = { ...BackgroundProps };
