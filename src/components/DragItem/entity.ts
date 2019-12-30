@@ -9,8 +9,8 @@ export const elementsTypeConfig: Array<Comp.EleType> = [
   },
   {
     id: uuid(),
-    type: 'block',
-    name: 'Copy',
+    type: ItemConfig.TITLE,
+    name: '标题栏',
   },
   {
     id: uuid(),

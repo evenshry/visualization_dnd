@@ -11,10 +11,9 @@ const PropLabelConfig: { [key: string]: string } = {
   background: '背景',
   border: '边框',
   size: '尺寸',
-  position: '位置',
-  layout: '布局',
-  grid: '边距',
-  title: '标题',
+  font: '文字',
+  margin: '外边距',
+  padding: '内边距',
   content: '内容',
 };
 

@@ -6,6 +6,7 @@ import { uuid } from '@/utils';
 
 import { BaseProps } from './elements/base';
 import { elementsProps as BackgroundProps } from './elements/Background/entity';
+import { elementsProps as TitleProps } from './elements/MyTitle/entity';
 
 interface Props {
   children?: ReactNode;
@@ -43,21 +44,24 @@ export function CtxProvider({ children }: Props) {
    * 添加元素到组件节点树
    */
   const appendElementToTree = (compTyle: string, index: number, nodeId?: string) => {
-    let background: Comp.Element = { ...BaseProps };
+    let element: Comp.Element = { ...BaseProps };
     switch (compTyle) {
       case ItemConfig.BACKGROUND:
-        background = { ...BackgroundProps };
+        element = { ...BackgroundProps };
+        break;
+      case ItemConfig.TITLE:
+        element = { ...TitleProps };
         break;
     }
-    background.id = uuid();
-    background.editMode = true;
+    element.id = uuid();
+    element.editMode = true;
     if (nodeId) {
       // 放置到指定节点之指定位置
       const newTree = recursionUpdateNode(elementsTree, nodeId, node => {
         if (node.children && node.children.length > 0) {
-          node.children.splice(index, 0, background);
+          node.children.splice(index, 0, element);
         } else {
-          node.children = [background];
+          node.children = [element];
         }
         return node;
       });
@@ -65,9 +69,9 @@ export function CtxProvider({ children }: Props) {
     } else {
       // 放置到根节点之指定位置
       if (elementsTree.length > 0) {
-        elementsTree.splice(index, 0, background);
+        elementsTree.splice(index, 0, element);
       } else {
-        elementsTree.push(background);
+        elementsTree.push(element);
       }
       setElementsTree([...elementsTree]);
     }

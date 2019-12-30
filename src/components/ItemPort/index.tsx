@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { useDrag } from 'react-dnd';
 import { Draggable } from 'react-beautiful-dnd';
-import Background from '@/components/elements/Background';
 import { context } from '../context';
 import { ItemConfig } from './entity';
 import { Button } from 'antd';
+
+import Background from '@/components/elements/Background';
+import MyTitle from '@/components/elements/MyTitle';
 
 interface Props {
   data: Comp.Element;
@@ -25,6 +27,10 @@ function ItemPort(props: Props) {
   switch (data.type) {
     case ItemConfig.BACKGROUND:
       children = <Background data={data} />;
+      break;
+    case ItemConfig.TITLE:
+      children = <MyTitle data={data} />;
+      break;
   }
 
   if (data.editMode) {
@@ -55,7 +61,7 @@ function ItemPort(props: Props) {
 
                 <section className="title" {...provided.dragHandleProps}>
                   <span className="text">
-                    index:{index}, id:{data.id}
+                    id: {data.id}, name: {data.name}
                   </span>
                 </section>
 

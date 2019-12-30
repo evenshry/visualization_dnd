@@ -26,7 +26,7 @@ function ItemInput(props: Props) {
    * 字符串类型 处理值
    */
   function handleValueChange(value: string) {
-    if (data.key && value) {
+    if (data.key && value !== undefined) {
       updateElementStyle(data.key, value.toString());
     }
   }

@@ -1,7 +1,7 @@
 import React, { CSSProperties, useRef } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { useDropElement } from '@/hooks/useDropElement';
-import { bgDraggingOver } from '@/components/elements/base';
+import { bgDraggingOver, getStyleByProps } from '@/components/elements/base';
 import ItemPort from '@/components/ItemPort';
 
 interface Props {
@@ -15,18 +15,7 @@ function Background(props: Props) {
 
   const { isOverCurrent } = useDropElement(ref, data);
 
-  let style: CSSProperties = {};
-  if (data.props && data.props.style) {
-    const styleConfig = data.props.style;
-    style = {
-      // width: styleConfig.size.width.value + 'px',
-      // height: styleConfig.size.height.value + 'px',
-      backgroundColor: styleConfig.background.color.value,
-      borderWidth: styleConfig.border.width.value + 'px',
-      borderStyle: styleConfig.border.solid.value,
-      borderColor: styleConfig.border.color.value,
-    };
-  }
+  const style: CSSProperties = getStyleByProps(data);
 
   return (
     <Droppable droppableId={data.id} type={data.id} ignoreContainerClipping={true}>
