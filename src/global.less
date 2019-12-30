@@ -94,18 +94,29 @@ body,
 .header {
   height: 50px;
   line-height: 50px;
+  padding: 0 20px;
   .flexRow;
   align-items: center;
-  transform: none;
-  background-color: #fff;
-  .cloneNavItem {
-    width: 80px;
-    height: 100%;
-    text-align: center;
+  .navContainer {
+    flex: 1;
+    .flexRow;
+    align-items: center;
+    transform: none;
+    background-color: #fff;
+    .cloneNavItem {
+      width: 80px;
+      height: 100%;
+      text-align: center;
+    }
+    .navItem {
+      .cloneNavItem;
+      transition-delay: 0s;
+    }
   }
-  .navItem {
-    .cloneNavItem;
-    transition-delay: 0s;
+
+  .switchLocale {
+    .flexRow;
+    align-items: center;
   }
 }
 .container {

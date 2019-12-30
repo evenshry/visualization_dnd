@@ -1,21 +1,11 @@
 import React, { useContext } from 'react';
-import { context } from '../../components/context';
+import { formatMessage } from 'umi-plugin-locale';
 import { Tabs, Button, Collapse, Icon } from 'antd';
+import { context } from '../../components/context';
 import ItemInput from '@/components/ItemInput';
 
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
-
-const PropLabelConfig: { [key: string]: string } = {
-  base: '通用',
-  background: '背景',
-  border: '边框',
-  size: '尺寸',
-  font: '文字',
-  margin: '外边距',
-  padding: '内边距',
-  content: '内容',
-};
 
 function SideBar() {
   const { currtntElement, visibleSideBar, setVisibleSideBar } = useContext(context);
@@ -33,7 +23,7 @@ function SideBar() {
           });
         }
         styleData.push({
-          title: PropLabelConfig[blockKey],
+          title: formatMessage({ id: `style.${blockKey}` }),
           data: propData,
         });
       }
@@ -55,7 +45,7 @@ function SideBar() {
 
         <Tabs type="card">
           {styleData.length > 0 && (
-            <TabPane tab="样式" key="style">
+            <TabPane tab={formatMessage({ id: 'style' })} key="style">
               <Collapse
                 bordered={false}
                 defaultActiveKey={['item_0']}

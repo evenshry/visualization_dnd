@@ -1,43 +1,44 @@
+import { formatMessage } from 'umi-plugin-locale';
 import { InputConfig } from '@/components/ItemInput/entity';
 import { extendBaseProps } from '@/components/elements/base';
 
 export const elementsProps: Comp.Element = extendBaseProps({
   id: '',
   type: 'title',
-  name: 'title',
+  name: formatMessage({ id: 'drag.item.title' }),
   props: {
     style: {
       font: {
         color: {
           type: InputConfig.Color,
-          name: '颜色',
+          name: formatMessage({ id: 'style.font.color' }),
           value: '#333',
         },
         size: {
           type: InputConfig.Number,
-          name: '大小',
+          name: formatMessage({ id: 'style.font.size' }),
           value: 16,
         },
         weight: {
           type: InputConfig.Boolean,
-          name: '加粗',
+          name: formatMessage({ id: 'style.font.weight' }),
           value: 'true',
         },
         lineHeight: {
           type: InputConfig.Number,
-          name: '行高',
+          name: formatMessage({ id: 'style.font.lineHeight' }),
           value: 40,
         },
         align: {
           type: InputConfig.HAlign,
-          name: '对齐',
+          name: formatMessage({ id: 'style.font.align' }),
           value: 'center',
         },
       },
       content: {
         title: {
           type: InputConfig.Text,
-          name: '标题',
+          name: formatMessage({ id: 'style.content.title' }),
           value: '标题',
         },
       },

@@ -1,3 +1,5 @@
+import { formatMessage } from 'umi-plugin-locale';
+
 /**
  * 属性输入框类型
  */
@@ -10,7 +12,7 @@ export const InputConfig: {
   HAlign: 'HAlign';
   VAlign: 'VAlign';
   Boolean: 'Boolean';
-  SolidType: 'SolidType';
+  BorderStyle: 'BorderStyle';
 } = {
   String: 'String',
   Number: 'Number',
@@ -20,7 +22,7 @@ export const InputConfig: {
   HAlign: 'HAlign',
   VAlign: 'VAlign',
   Boolean: 'Boolean',
-  SolidType: 'SolidType',
+  BorderStyle: 'BorderStyle',
 };
 
 /**
@@ -28,22 +30,22 @@ export const InputConfig: {
  */
 export const SelectConfig: { [key: string]: Array<{ value: string; label: string }> } = {
   [InputConfig.HAlign]: [
-    { value: 'left', label: '左边' },
-    { value: 'center', label: '中间' },
-    { value: 'right', label: '右边' },
+    { value: 'left', label: formatMessage({ id: 'select.HAlign.left' }) },
+    { value: 'center', label: formatMessage({ id: 'select.center' }) },
+    { value: 'right', label: formatMessage({ id: 'select.HAlign.left' }) },
   ],
   [InputConfig.VAlign]: [
-    { value: 'top', label: '顶部' },
-    { value: 'middle', label: '中间' },
-    { value: 'bottom', label: '底部' },
+    { value: 'top', label: formatMessage({ id: 'select.VAlign.top' }) },
+    { value: 'middle', label: formatMessage({ id: 'select.center' }) },
+    { value: 'bottom', label: formatMessage({ id: 'select.VAlign.bottom' }) },
   ],
   [InputConfig.Boolean]: [
-    { value: 'true', label: '是' },
-    { value: 'false', label: '否' },
+    { value: 'true', label: formatMessage({ id: 'select.boolean.true' }) },
+    { value: 'false', label: formatMessage({ id: 'select.boolean.false' }) },
   ],
-  [InputConfig.SolidType]: [
-    { value: 'solid', label: '实线' },
-    { value: 'dashed', label: '虚线' },
-    { value: 'dotted', label: '点线' },
+  [InputConfig.BorderStyle]: [
+    { value: 'solid', label: formatMessage({ id: 'select.border.style.solid' }) },
+    { value: 'dashed', label: formatMessage({ id: 'select.border.style.dashed' }) },
+    { value: 'dotted', label: formatMessage({ id: 'select.border.style.dotted' }) },
   ],
 };

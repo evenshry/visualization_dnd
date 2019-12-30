@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Select, Button } from 'antd';
 import { ChromePicker, ColorResult } from 'react-color';
+import { formatMessage } from 'umi-plugin-locale';
 
 interface Props {
   value: string;
@@ -49,7 +50,7 @@ function ColorPicker(props: Props) {
           <ChromePicker color={value} onChangeComplete={handleColorChange} />
           <section className="colorPickBtn">
             <Button type="default" onClick={handleCloseDropdown}>
-              关闭
+              {formatMessage({ id: 'button.close' })}
             </Button>
           </section>
         </section>

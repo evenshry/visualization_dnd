@@ -8,6 +8,10 @@ const config: IConfig = {
       path: '/',
       routes: [{ path: '/', component: '../pages/Index/index' }],
     },
+    {
+      path: '/preview',
+      routes: [{ path: '/', component: '../pages/Preview/index' }],
+    },
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html

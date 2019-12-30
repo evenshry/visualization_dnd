@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useDrag } from 'react-dnd';
 import { Draggable } from 'react-beautiful-dnd';
+import { formatMessage } from 'umi-plugin-locale';
 import { context } from '../context';
 import { ItemConfig } from './entity';
 import { Button } from 'antd';
@@ -61,7 +62,10 @@ function ItemPort(props: Props) {
 
                 <section className="title" {...provided.dragHandleProps}>
                   <span className="text">
-                    id: {data.id}, name: {data.name}
+                    {formatMessage({ id: 'section.id' })}: {data.id}；
+                  </span>
+                  <span className="text">
+                    {formatMessage({ id: 'section.name' })}: {data.name}
                   </span>
                 </section>
 
