@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { setLocale, getLocale } from 'umi-plugin-locale';
+import { setLocale, getLocale, formatMessage } from 'umi-plugin-locale';
 import { context } from '../../components/context';
 import DragItem from '@/components/DragItem';
-import { Select } from 'antd';
+import { Select, Button } from 'antd';
+import router from 'umi/router';
 
 const { Option } = Select;
 
@@ -18,10 +19,15 @@ const LocaleConfig = [
 ];
 
 function Headers() {
-  const { elementsType } = useContext(context);
+  const { elementsType, updateElementMode } = useContext(context);
 
   function handleSelectChange(value: string) {
     setLocale(value);
+  }
+
+  function handlePreview() {
+    updateElementMode(false);
+    router.push('/preview');
   }
 
   return (
@@ -30,6 +36,10 @@ function Headers() {
         {elementsType.map(item => (
           <DragItem data={item} key={item.id} />
         ))}
+      </section>
+
+      <section className="buttons">
+        <Button onClick={handlePreview}>{formatMessage({ id: 'button.preview' })}</Button>
       </section>
 
       <section className="switchLocale">

@@ -120,8 +120,8 @@ export function getStyleByProps(element: Comp.Element): CSSProperties {
     // 尺寸
     if (styleConfig.size) {
       if (
-        styleConfig.background.minHeight &&
-        styleConfig.background.minHeight.value !== undefined
+        styleConfig.size.minHeight &&
+        styleConfig.size.minHeight.value !== undefined
       ) {
         style.minHeight = styleConfig.size.minHeight.value + 'px';
       }

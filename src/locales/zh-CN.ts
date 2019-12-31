@@ -7,6 +7,8 @@ export default {
   'drag.item.title': '标题栏',
   // button
   'button.close': '关闭',
+  'button.home': '首页',
+  'button.preview': '预览',
   // select
   'select.center': '中间',
   'select.HAlign.left': '左边',

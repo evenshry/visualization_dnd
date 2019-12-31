@@ -16,13 +16,6 @@ interface Props {
 
 function ItemPort(props: Props) {
   const { data, index } = props;
-  const { setCurrtntElement, setVisibleSideBar, removeElementFromTree } = useContext(context);
-  const [{ opacity }, drag, preview] = useDrag<Comp.Element, unknown, any>({
-    item: { ...data, index },
-    collect: monitor => ({
-      opacity: monitor.isDragging() ? 0.4 : 1,
-    }),
-  });
 
   let children = <></>;
   switch (data.type) {
@@ -35,6 +28,15 @@ function ItemPort(props: Props) {
   }
 
   if (data.editMode) {
+    const { setCurrtntElement, setVisibleSideBar, removeElementFromTree } = useContext(context);
+
+    const [{ opacity }, drag, preview] = useDrag<Comp.Element, unknown, any>({
+      item: { ...data, index },
+      collect: monitor => ({
+        opacity: monitor.isDragging() ? 0.4 : 1,
+      }),
+    });
+
     function edit() {
       setCurrtntElement(data);
       setTimeout(() => {

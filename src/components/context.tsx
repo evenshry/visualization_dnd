@@ -26,6 +26,7 @@ interface Injected {
   updateElementSortOnTree: (source: DraggableLocation, destination: DraggableLocation) => void;
   removeElementFromTree: (id: string) => void;
   updateElementStyle: (key: string, value: string) => void;
+  updateElementMode: (edit: boolean) => void;
 }
 
 export const context = createContext<Injected>({} as Injected);
@@ -161,6 +162,20 @@ export function CtxProvider({ children }: Props) {
     }
   };
 
+  /**
+   * 更新节点编辑模式
+   * @param edit 是否编辑
+   */
+  const updateElementMode = (edit: boolean) => {
+    if (elementsTree.length > 0) {
+      const newTree = recursionUpdateAllNode(elementsTree, node => {
+        node.editMode = edit;
+        return node;
+      });
+      setElementsTree([...newTree]);
+    }
+  };
+
   const value = {
     elementsType,
     setElementsType,
@@ -175,6 +190,7 @@ export function CtxProvider({ children }: Props) {
     updateElementSortOnTree,
     removeElementFromTree,
     updateElementStyle,
+    updateElementMode,
   };
 
   return <context.Provider value={value}>{children}</context.Provider>;
@@ -225,6 +241,21 @@ function recursionUpdateNode(
       if (item.children && item.children.length > 0) {
         item.children = recursionUpdateNode(item.children, nodeId, callback);
       }
+    }
+    return item;
+  });
+  return data;
+}
+
+/**
+ * 递归更新所有节点
+ * @return 新节点树
+ */
+function recursionUpdateAllNode(data: Array<Comp.Element>, callback: RecursionCallback) {
+  data.map(item => {
+    item = callback(item);
+    if (item.children && item.children.length > 0) {
+      item.children = recursionUpdateAllNode(item.children, callback);
     }
     return item;
   });

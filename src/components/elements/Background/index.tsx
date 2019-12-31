@@ -11,32 +11,42 @@ interface Props {
 function Background(props: Props) {
   const { data } = props;
 
-  const ref = useRef<HTMLDivElement>(null);
-
-  const { isOverCurrent } = useDropElement(ref, data);
-
   const style: CSSProperties = getStyleByProps(data);
 
-  return (
-    <Droppable droppableId={data.id} type={data.id} ignoreContainerClipping={true}>
-      {(provided, snapshot) => (
-        <section ref={provided.innerRef} {...provided.droppableProps} className="background">
-          <section
-            ref={ref}
-            className="backgroundInner"
-            style={isOverCurrent ? { ...style, ...bgDraggingOver } : style}
-          >
-            {data.children && data.children.length > 0
-              ? data.children.map((item, index) => (
-                  <ItemPort data={item} key={index} index={index} />
-                ))
-              : null}
-            {provided.placeholder}
+  if (data.editMode) {
+    const ref = useRef<HTMLDivElement>(null);
+
+    const { isOverCurrent } = useDropElement(ref, data);
+
+    return (
+      <Droppable droppableId={data.id} type={data.id} ignoreContainerClipping={true}>
+        {(provided, snapshot) => (
+          <section ref={provided.innerRef} {...provided.droppableProps} className="background">
+            <section
+              ref={ref}
+              className="backgroundInner"
+              style={isOverCurrent ? { ...style, ...bgDraggingOver } : style}
+            >
+              {data.children && data.children.length > 0
+                ? data.children.map((item, index) => (
+                    <ItemPort data={item} key={index} index={index} />
+                  ))
+                : null}
+              {provided.placeholder}
+            </section>
           </section>
-        </section>
-      )}
-    </Droppable>
-  );
+        )}
+      </Droppable>
+    );
+  } else {
+    return (
+      <section className="backgroundInner" style={style}>
+        {data.children && data.children.length > 0
+          ? data.children.map((item, index) => <ItemPort data={item} key={index} index={index} />)
+          : null}
+      </section>
+    );
+  }
 }
 
 export default Background;

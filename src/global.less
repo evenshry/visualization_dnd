@@ -90,7 +90,7 @@ body,
   width: 100%;
 }
 
-/** 页面样式 **/
+/** Header **/
 .header {
   height: 50px;
   line-height: 50px;
@@ -113,12 +113,19 @@ body,
       transition-delay: 0s;
     }
   }
-
-  .switchLocale {
+  .buttons {
     .flexRow;
     align-items: center;
+    margin-left: 20px;
+  }
+  .switchLocale {
+    .flexRow;
+    width: 100px;
+    align-items: center;
+    margin-left: 20px;
   }
 }
+/** container **/
 .container {
   background-color: #fff;
   height: calc(100% - 50px);
@@ -137,7 +144,6 @@ body,
     .editSection {
       position: relative;
       margin-bottom: 20px;
-
       .handler {
         .flexRow;
         align-items: center;
@@ -167,70 +173,73 @@ body,
       border: 1px dashed #999;
       border-radius: 10px;
     }
-    .background {
-      height: fit-content;
-      .backgroundInner {
-        min-height: 300px;
-        padding: 20px;
+  }
+}
+/** sideBar **/
+.sideBar {
+  position: relative;
+  right: -300px;
+  top: 0px;
+  width: 0px;
+  opacity: 0;
+  transform: translate(0, 0);
+  visibility: hidden;
+  height: 100%;
+  background-color: #fff;
+  transition: all 0.2s;
+  &.show {
+    opacity: 1;
+    width: 300px;
+    transform: translate(-100%, 0);
+    visibility: visible;
+  }
+  .toolBar {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 9;
+    button {
+      color: var(--promary-color);
+      &:hover {
+        color: var(--promary-color);
       }
     }
   }
-  .sideBar {
+  .inputRow {
+    .flexRow;
+    align-items: center;
+    padding: 5px 0;
+    .label {
+      width: 80px;
+      text-align: right;
+    }
+    .value {
+      flex: 1;
+      margin-left: 10px;
+      .colorIcon {
+        width: 14px;
+        height: 14px;
+        background-color: #ff0000;
+      }
+    }
+  }
+  .colorPickContainer {
+    width: 225px;
     position: relative;
-    right: -300px;
-    top: 0px;
-    width: 0px;
-    opacity: 0;
-    transform: translate(0, 0);
-    visibility: hidden;
-    height: 100%;
-    background-color: #fff;
-    transition: all 0.2s;
-    &.show {
-      opacity: 1;
-      width: 300px;
-      transform: translate(-100%, 0);
-      visibility: visible;
-    }
-    .toolBar {
+    left: -80px;
+    .colorPickBtn {
       position: absolute;
+      top: -35px;
       right: 0px;
-      top: 0px;
-      z-index: 9;
-      button {
-        color: var(--promary-color);
-        &:hover {
-          color: var(--promary-color);
-        }
-      }
     }
-    .inputRow {
-      .flexRow;
-      align-items: center;
-      padding: 5px 0;
-      .label {
-        width: 80px;
-        text-align: right;
-      }
-      .value {
-        flex: 1;
-        margin-left: 10px;
-        .colorIcon {
-          width: 14px;
-          height: 14px;
-          background-color: #ff0000;
-        }
-      }
-    }
-    .colorPickContainer {
-      width: 225px;
-      position: relative;
-      left: -80px;
-      .colorPickBtn {
-        position: absolute;
-        top: -35px;
-        right: 0px;
-      }
-    }
+  }
+}
+
+/** preview **/
+.preview {
+  .buttons {
+    position: absolute;
+    right: 0px;
+    top: 0px;
   }
 }

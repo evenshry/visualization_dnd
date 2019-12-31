@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { formatMessage, setLocale } from 'umi-plugin-locale';
 import { DndProvider } from 'react-dnd';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import { CtxProvider, context } from '../../components/context';
+import { context } from '../components/context';
 import Backend from 'react-dnd-html5-backend';
 import Headers from '@/layouts/Headers';
 import Content from '@/layouts/Content';
@@ -36,8 +35,4 @@ function Index() {
     </DragDropContext>
   );
 }
-export default () => (
-  <CtxProvider>
-    <Index />
-  </CtxProvider>
-);
+export default Index;

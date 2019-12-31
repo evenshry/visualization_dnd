@@ -7,6 +7,8 @@ export default {
   'drag.item.title': 'Title',
   // button
   'button.close': 'Close',
+  'button.home': 'Home',
+  'button.preview': 'Preview',
   // select
   'select.center': 'center',
   'select.HAlign.left': 'left',
