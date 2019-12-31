@@ -12,18 +12,16 @@ export function getNodeIndexByOffset(ref: RefObject<HTMLDivElement>, offset: any
     let height = 0;
     for (let i = 0; i < nodes.length; i++) {
       const nodeItem = nodes.item(i);
-      if (nodeItem && nodeItem.className !== 'dropPlaceholder') {
+      if (nodeItem) {
         // @ts-ignore
-        const nodeHeight = nodes.item(i)?.offsetHeight;
-        // 加上 margin-bottom
-        height += nodeHeight + 20;
-        // 比较时 加上 handler 的高度
+        height += nodes.item(i)?.offsetHeight;
+        // 比较时 加上 鼠标偏移量
         if (offset.y < height + 50) {
           return i;
         }
       }
     }
-    // 比较时 加上 handler 的高度
+    // 比较时 加上 鼠标偏移量
     if (offset.y >= height + 50) {
       return nodes.length;
     }

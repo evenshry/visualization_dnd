@@ -6,6 +6,7 @@ import Backend from 'react-dnd-html5-backend';
 import Headers from '@/layouts/Headers';
 import Content from '@/layouts/Content';
 import SideBar from '@/layouts/SideBar';
+import SideDrag from '@/layouts/SideDrag';
 
 export default function() {
   const { updateElementSortOnTree } = useContext(context);
@@ -28,6 +29,7 @@ export default function() {
       <DndProvider backend={Backend}>
         <Headers />
         <section className="container">
+          <SideDrag />
           <Content />
           <SideBar />
         </section>

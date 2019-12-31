@@ -15,16 +15,6 @@ body,
   padding: 0;
 }
 
-/* flex */
-.flex {
-  display: flex;
-}
-
-.flexCol {
-  display: flex;
-  flex-direction: column;
-}
-
 .flexRow {
   display: flex;
   flex-direction: row;
@@ -36,25 +26,13 @@ body,
   justify-content: flex-end;
 }
 
-.inline {
-  display: inline-block;
-}
-
 /* margin */
-.mgt5 {
-  margin-top: 5px;
-}
-
 .mgt10 {
   margin-top: 10px;
 }
 
 .mgt20 {
   margin-top: 20px;
-}
-
-.mgl5 {
-  margin-left: 5px;
 }
 
 .mgl10 {
@@ -77,17 +55,30 @@ body,
   margin-bottom: 10px;
 }
 
-/* padding */
-.pdt10 {
-  padding-top: 10px;
-}
-
-.pdt20 {
-  padding-top: 20px;
-}
-
 .w100 {
   width: 100%;
+}
+
+.bottomHr {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d9d9d9;
+  }
+}
+
+.ant-collapse-item {
+  border-bottom: none !important;
+  .bottomHr;
 }
 
 /** Header **/
@@ -97,16 +88,14 @@ body,
   padding: 0 20px;
   .flexRow;
   align-items: center;
+  .bottomHr;
   .navContainer {
     flex: 1;
     .flexRow;
     align-items: center;
-    transform: none;
-    background-color: #fff;
-    .navItem {
-      width: 100px;
-      height: 100%;
-      text-align: center;
+    .logo {
+      font-size: 20px;
+      font-weight: 600;
     }
   }
   .buttons {
@@ -170,6 +159,23 @@ body,
     }
   }
 }
+/** sideDrag **/
+.sideDrag {
+  width: 100px;
+  height: 100%;
+  overflow-y: auto;
+  .navContainer {
+    transform: none;
+    background-color: #fff;
+    .navItem {
+      width: 100px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      .bottomHr;
+    }
+  }
+}
 /** sideBar **/
 .sideBar {
   position: relative;
@@ -216,7 +222,7 @@ body,
       .colorIcon {
         width: 14px;
         height: 14px;
-        background-color: #ff0000;
+        background-color: var(--promary-color);
       }
     }
   }
@@ -231,7 +237,6 @@ body,
     }
   }
 }
-
 /** preview **/
 .preview {
   .buttons {

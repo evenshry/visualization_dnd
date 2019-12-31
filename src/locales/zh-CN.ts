@@ -1,5 +1,6 @@
 export default {
   // app
+  'app.name': '可视化布局',
   'app.index': '可视化',
   'app.home': '首页',
   'app.preview': '预览',

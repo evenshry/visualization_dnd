@@ -1,5 +1,6 @@
 export default {
   // app
+  'app.name': 'Visualization Layout',
   'app.index': 'Vsl',
   'app.home': 'Home',
   'app.preview': 'Preview',

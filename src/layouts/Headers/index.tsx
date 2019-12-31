@@ -33,9 +33,7 @@ function Headers() {
   return (
     <section className="header">
       <section className="navContainer">
-        {elementsType.map(item => (
-          <DragItem data={item} key={item.id} />
-        ))}
+        <section className="logo">{formatMessage({ id: 'app.name' })}</section>
       </section>
 
       <section className="buttons">
