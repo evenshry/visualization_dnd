@@ -1,5 +1,9 @@
 export default {
-  // display
+  // app
+  'app.index': '可视化',
+  'app.home': '首页',
+  'app.preview': '预览',
+  // section
   'section.id': '编号',
   'section.name': '名称',
   // drag.item

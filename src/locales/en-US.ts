@@ -1,5 +1,9 @@
 export default {
-  // display
+  // app
+  'app.index': 'Vsl',
+  'app.home': 'Home',
+  'app.preview': 'Preview',
+  // section
   'section.id': 'ID',
   'section.name': 'Name',
   // drag.item

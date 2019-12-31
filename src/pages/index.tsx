@@ -7,7 +7,7 @@ import Headers from '@/layouts/Headers';
 import Content from '@/layouts/Content';
 import SideBar from '@/layouts/SideBar';
 
-function Index() {
+export default function() {
   const { updateElementSortOnTree } = useContext(context);
 
   function onDragEnd(result: DropResult) {
@@ -35,4 +35,3 @@ function Index() {
     </DragDropContext>
   );
 }
-export default Index;

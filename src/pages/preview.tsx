@@ -5,7 +5,7 @@ import ItemPort from '@/components/ItemPort';
 import { Button } from 'antd';
 import router from 'umi/router';
 
-function Index() {
+export default function() {
   const { elementsTree, updateElementMode } = useContext(context);
 
   function handleHome() {
@@ -16,12 +16,12 @@ function Index() {
   return (
     <section className="preview">
       <section className="buttons">
-        <Button onClick={handleHome}>{formatMessage({ id: 'button.home' })}</Button>
+        <Button icon="home" type="link" onClick={handleHome} />
       </section>
+
       {elementsTree && elementsTree.length > 0
         ? elementsTree.map((item, index) => <ItemPort data={item} key={index} index={index} />)
         : null}
     </section>
   );
 }
-export default Index;
