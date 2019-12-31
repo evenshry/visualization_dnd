@@ -4,7 +4,6 @@ import { elementsTypeConfig } from './DragItem/entity';
 import { ItemConfig } from './ItemPort/entity';
 import { uuid } from '@/utils';
 
-import { BaseProps } from './elements/base';
 import { elementsProps as BackgroundProps } from './elements/Background/entity';
 import { elementsProps as TitleProps } from './elements/MyTitle/entity';
 
@@ -45,13 +44,13 @@ export function CtxProvider({ children }: Props) {
    * 添加元素到组件节点树
    */
   const appendElementToTree = (compTyle: string, index: number, nodeId?: string) => {
-    let element: Comp.Element = { ...BaseProps };
+    let element: any = null;
     switch (compTyle) {
       case ItemConfig.BACKGROUND:
-        element = { ...BackgroundProps };
+        element = JSON.parse(JSON.stringify(BackgroundProps));
         break;
       case ItemConfig.TITLE:
-        element = { ...TitleProps };
+        element = JSON.parse(JSON.stringify(TitleProps));
         break;
     }
     element.id = uuid();
@@ -156,6 +155,7 @@ export function CtxProvider({ children }: Props) {
       const targetId = currtntElement.id;
       const newTree = recursionUpdateNode(elementsTree, targetId, node => {
         node.props = updateElementProps(node, key, value);
+        // setCurrtntElement(JSON.parse(JSON.stringify(node)));
         return node;
       });
       setElementsTree([...newTree]);

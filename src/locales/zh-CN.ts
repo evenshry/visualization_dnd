@@ -24,6 +24,10 @@ export default {
   'select.border.style.solid': '实线',
   'select.border.style.dashed': '虚线',
   'select.border.style.dotted': '点线',
+  'select.flex.column': '主轴为垂直方向',
+  'select.flex.row': '主轴为水平方向',
+  'select.flex.start': '主轴开始',
+  'select.flex.end': '主轴结束',
   // style
   style: '样式',
   'style.background': '背景',
@@ -53,4 +57,9 @@ export default {
   'style.content': '内容',
   'style.content.title': '标题',
   'style.content.text': '内容',
+  'style.flex': '弹性布局',
+  'style.flex.open': '开启',
+  'style.flex.direction': '方向',
+  'style.flex.alignItems': '交叉轴对齐',
+  'style.flex.justifyContent': '主轴对齐',
 };

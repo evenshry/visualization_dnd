@@ -13,6 +13,9 @@ export const InputConfig: {
   VAlign: 'VAlign';
   Boolean: 'Boolean';
   BorderStyle: 'BorderStyle';
+  FlexDirection: 'FlexDirection';
+  AlignItems: 'AlignItems';
+  JustifyContent: 'JustifyContent';
 } = {
   String: 'String',
   Number: 'Number',
@@ -23,6 +26,9 @@ export const InputConfig: {
   VAlign: 'VAlign',
   Boolean: 'Boolean',
   BorderStyle: 'BorderStyle',
+  FlexDirection: 'FlexDirection',
+  AlignItems: 'AlignItems',
+  JustifyContent: 'JustifyContent',
 };
 
 /**
@@ -47,5 +53,19 @@ export const SelectConfig: { [key: string]: Array<{ value: string; label: string
     { value: 'solid', label: formatMessage({ id: 'select.border.style.solid' }) },
     { value: 'dashed', label: formatMessage({ id: 'select.border.style.dashed' }) },
     { value: 'dotted', label: formatMessage({ id: 'select.border.style.dotted' }) },
+  ],
+  [InputConfig.FlexDirection]: [
+    { value: 'column', label: formatMessage({ id: 'select.flex.column' }) },
+    { value: 'row', label: formatMessage({ id: 'select.flex.row' }) },
+  ],
+  [InputConfig.JustifyContent]: [
+    { value: 'flex-start', label: formatMessage({ id: 'select.flex.start' }) },
+    { value: 'center', label: formatMessage({ id: 'select.center' }) },
+    { value: 'flex-end', label: formatMessage({ id: 'select.flex.end' }) },
+  ],
+  [InputConfig.AlignItems]: [
+    { value: 'flex-start', label: formatMessage({ id: 'select.flex.start' }) },
+    { value: 'center', label: formatMessage({ id: 'select.center' }) },
+    { value: 'flex-end', label: formatMessage({ id: 'select.flex.end' }) },
   ],
 };

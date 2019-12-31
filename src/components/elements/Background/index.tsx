@@ -21,12 +21,8 @@ function Background(props: Props) {
     return (
       <Droppable droppableId={data.id} type={data.id} ignoreContainerClipping={true}>
         {(provided, snapshot) => (
-          <section ref={provided.innerRef} {...provided.droppableProps} className="background">
-            <section
-              ref={ref}
-              className="backgroundInner"
-              style={isOverCurrent ? { ...style, ...bgDraggingOver } : style}
-            >
+          <section ref={provided.innerRef} {...provided.droppableProps}>
+            <section ref={ref} style={isOverCurrent ? { ...style, ...bgDraggingOver } : style}>
               {data.children && data.children.length > 0
                 ? data.children.map((item, index) => (
                     <ItemPort data={item} key={index} index={index} />
@@ -40,7 +36,7 @@ function Background(props: Props) {
     );
   } else {
     return (
-      <section className="backgroundInner" style={style}>
+      <section style={style}>
         {data.children && data.children.length > 0
           ? data.children.map((item, index) => <ItemPort data={item} key={index} index={index} />)
           : null}

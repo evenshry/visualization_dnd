@@ -29,7 +29,7 @@ export function recursionExtendProp(source: Common.AnyObject, target: Common.Any
     if (source.hasOwnProperty(key)) {
       if (isObject(source[key])) {
         if (!target[key]) {
-          target[key] = {};
+          target[key] = Array.isArray(source[key]) ? [] : {};
         }
         recursionExtendProp(source[key], target[key]);
       } else {

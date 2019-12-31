@@ -36,6 +36,9 @@ function SideBar() {
     return (
       <section id="sideBarContainer" className={`sideBar ${visibleSideBar ? 'show' : ''}`}>
         <section className="toolBar">
+          <span>
+            {formatMessage({ id: 'section.id' })}: {currtntElement.id}
+          </span>
           <Button
             icon={visibleSideBar ? 'double-right' : 'double-left'}
             onClick={handleVisible}

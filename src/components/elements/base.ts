@@ -99,7 +99,7 @@ export const BaseProps: Comp.Element = {
  */
 export function extendBaseProps(element: Comp.Element) {
   recursionExtendProp(BaseProps, element);
-  return element;
+  return JSON.parse(JSON.stringify(element));
 }
 
 /**
@@ -119,10 +119,7 @@ export function getStyleByProps(element: Comp.Element): CSSProperties {
     }
     // 尺寸
     if (styleConfig.size) {
-      if (
-        styleConfig.size.minHeight &&
-        styleConfig.size.minHeight.value !== undefined
-      ) {
+      if (styleConfig.size.minHeight && styleConfig.size.minHeight.value !== undefined) {
         style.minHeight = styleConfig.size.minHeight.value + 'px';
       }
     }
@@ -184,6 +181,21 @@ export function getStyleByProps(element: Comp.Element): CSSProperties {
       }
       if (styleConfig.font.align && styleConfig.font.align.value) {
         style.textAlign = styleConfig.font.align.value;
+      }
+    }
+    // 弹性布局
+    if (styleConfig.flex) {
+      if (styleConfig.flex.open && styleConfig.flex.open.value) {
+        style.display = styleConfig.flex.open.value === 'true' ? 'flex' : 'block';
+      }
+      if (styleConfig.flex.direction && styleConfig.flex.direction.value) {
+        style.flexDirection = styleConfig.flex.direction.value;
+      }
+      if (styleConfig.flex.justifyContent && styleConfig.flex.justifyContent.value) {
+        style.justifyContent = styleConfig.flex.justifyContent.value;
+      }
+      if (styleConfig.flex.alignItems && styleConfig.flex.alignItems.value) {
+        style.alignItems = styleConfig.flex.alignItems.value;
       }
     }
   }

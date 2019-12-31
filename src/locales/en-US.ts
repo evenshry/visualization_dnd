@@ -24,6 +24,10 @@ export default {
   'select.border.style.solid': 'solid',
   'select.border.style.dashed': 'dashed',
   'select.border.style.dotted': 'dotted',
+  'select.flex.column': 'column',
+  'select.flex.row': 'row',
+  'select.flex.start': 'flex-start',
+  'select.flex.end': 'flex-end',
   // style
   style: 'Style',
   'style.background': 'Background',
@@ -53,4 +57,9 @@ export default {
   'style.content': 'Content',
   'style.content.title': 'title',
   'style.content.text': 'text',
+  'style.flex': 'flex',
+  'style.flex.open': 'open',
+  'style.flex.direction': 'direction',
+  'style.flex.alignItems': 'alignItems',
+  'style.flex.justifyContent': 'justifyContent',
 };

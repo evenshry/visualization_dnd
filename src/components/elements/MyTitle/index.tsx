@@ -18,8 +18,8 @@ function MyTitle(props: Props) {
   }
 
   return (
-    <section className="titleContainer" style={style}>
-      <section className="title">{content}</section>
+    <section style={style}>
+      <span>{content}</span>
     </section>
   );
 }

@@ -37,6 +37,28 @@ export const elementsProps: Comp.Element = extendBaseProps({
           value: 20,
         },
       },
+      flex: {
+        open: {
+          type: InputConfig.Boolean,
+          name: formatMessage({ id: 'style.flex.open' }),
+          value: 'false',
+        },
+        direction: {
+          type: InputConfig.FlexDirection,
+          name: formatMessage({ id: 'style.flex.direction' }),
+          value: 'row',
+        },
+        justifyContent: {
+          type: InputConfig.JustifyContent,
+          name: formatMessage({ id: 'style.flex.justifyContent' }),
+          value: 'center',
+        },
+        alignItems: {
+          type: InputConfig.AlignItems,
+          name: formatMessage({ id: 'style.flex.alignItems' }),
+          value: 'center',
+        },
+      },
     },
   },
 });
