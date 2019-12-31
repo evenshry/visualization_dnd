@@ -33,6 +33,8 @@ export default {
   'style.background': 'Background',
   'style.background.color': 'color',
   'style.size': 'Size',
+  'style.size.width': 'width',
+  'style.size.height': 'height',
   'style.size.minHeight': 'min height',
   'style.border': 'Border',
   'style.border.width': 'width',

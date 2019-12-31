@@ -103,14 +103,10 @@ body,
     align-items: center;
     transform: none;
     background-color: #fff;
-    .cloneNavItem {
-      width: 80px;
+    .navItem {
+      width: 100px;
       height: 100%;
       text-align: center;
-    }
-    .navItem {
-      .cloneNavItem;
-      transition-delay: 0s;
     }
   }
   .buttons {
@@ -139,15 +135,16 @@ body,
     .drapCanvasInner {
       overflow: auto;
       height: 100%;
-      padding: 20px;
+      padding: 10px;
     }
     .editSection {
       position: relative;
-      margin-bottom: 20px;
+      outline: 1px solid var(--promary-color);
       .handler {
         .flexRow;
         align-items: center;
         background-color: var(--promary-color);
+        font-size: 12px;
         .title {
           flex: 1;
           height: 100%;
@@ -159,6 +156,9 @@ body,
         }
         button {
           color: #fff;
+          width: 24px;
+          height: 24px;
+          font-size: 12px;
           &:hover {
             color: #fff;
           }
@@ -167,11 +167,6 @@ body,
           background-color: var(--promary-color);
         }
       }
-    }
-    .dropPlaceholder {
-      height: 200px;
-      border: 1px dashed #999;
-      border-radius: 10px;
     }
   }
 }

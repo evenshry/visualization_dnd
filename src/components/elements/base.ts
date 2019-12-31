@@ -27,6 +27,18 @@ export const BaseProps: Comp.Element = {
           value: 'rgba(108, 113, 117, 0.3)',
         },
       },
+      size: {
+        width: {
+          type: InputConfig.String,
+          name: formatMessage({ id: 'style.size.width' }),
+          value: 'auto',
+        },
+        height: {
+          type: InputConfig.String,
+          name: formatMessage({ id: 'style.size.height' }),
+          value: 'auto',
+        },
+      },
       border: {
         width: {
           type: InputConfig.Number,
@@ -119,6 +131,12 @@ export function getStyleByProps(element: Comp.Element): CSSProperties {
     }
     // 尺寸
     if (styleConfig.size) {
+      if (styleConfig.size.width && styleConfig.size.width.value) {
+        style.width = styleConfig.size.width.value;
+      }
+      if (styleConfig.size.height && styleConfig.size.height.value) {
+        style.height = styleConfig.size.height.value;
+      }
       if (styleConfig.size.minHeight && styleConfig.size.minHeight.value !== undefined) {
         style.minHeight = styleConfig.size.minHeight.value + 'px';
       }

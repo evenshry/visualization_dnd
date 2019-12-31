@@ -19,22 +19,22 @@ export const elementsProps: Comp.Element = extendBaseProps({
         top: {
           type: InputConfig.Number,
           name: formatMessage({ id: 'style.padding.top' }),
-          value: 20,
+          value: 10,
         },
         bottom: {
           type: InputConfig.Number,
           name: formatMessage({ id: 'style.padding.bottom' }),
-          value: 20,
+          value: 10,
         },
         left: {
           type: InputConfig.Number,
           name: formatMessage({ id: 'style.padding.left' }),
-          value: 20,
+          value: 10,
         },
         right: {
           type: InputConfig.Number,
           name: formatMessage({ id: 'style.padding.right' }),
-          value: 20,
+          value: 10,
         },
       },
       flex: {

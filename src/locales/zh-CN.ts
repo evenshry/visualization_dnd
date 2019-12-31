@@ -33,6 +33,8 @@ export default {
   'style.background': '背景',
   'style.background.color': '背景颜色',
   'style.size': '尺寸',
+  'style.size.width': '宽度',
+  'style.size.height': '高度',
   'style.size.minHeight': '最小高度',
   'style.border': '边框',
   'style.border.width': '边框宽度',
