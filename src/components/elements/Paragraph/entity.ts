@@ -5,20 +5,20 @@ import { ItemConfig } from '@/components/ItemPort/entity';
 
 export const elementsProps: Comp.Element = extendBaseProps({
   id: '',
-  type: ItemConfig.TITLE,
-  name: formatMessage({ id: 'drag.item.title' }),
+  type: ItemConfig.PARAGRAPH,
+  name: formatMessage({ id: 'drag.item.paragraph' }),
   props: {
     style: {
       font: {
         color: {
           type: InputConfig.Color,
           name: formatMessage({ id: 'style.font.color' }),
-          value: '#333',
+          value: '#666',
         },
         size: {
           type: InputConfig.Number,
           name: formatMessage({ id: 'style.font.size' }),
-          value: 16,
+          value: 12,
         },
         weight: {
           type: InputConfig.Boolean,
@@ -28,19 +28,19 @@ export const elementsProps: Comp.Element = extendBaseProps({
         lineHeight: {
           type: InputConfig.Number,
           name: formatMessage({ id: 'style.font.lineHeight' }),
-          value: 40,
+          value: 30,
         },
         align: {
           type: InputConfig.HAlign,
           name: formatMessage({ id: 'style.font.align' }),
-          value: 'center',
+          value: 'left',
         },
       },
       content: {
-        title: {
+        text: {
           type: InputConfig.Text,
-          name: formatMessage({ id: 'style.content.title' }),
-          value: '标题',
+          name: formatMessage({ id: 'style.content.text' }),
+          value: '这里是段落内容',
         },
       },
     },

@@ -10,6 +10,7 @@ export default {
   // drag.item
   'drag.item.background': '背景框',
   'drag.item.title': '标题栏',
+  'drag.item.paragraph': '段落栏',
   // button
   'button.close': '关闭',
   'button.home': '首页',

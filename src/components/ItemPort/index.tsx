@@ -8,6 +8,7 @@ import { Button } from 'antd';
 
 import Background from '@/components/elements/Background';
 import MyTitle from '@/components/elements/MyTitle';
+import Paragraph from '@/components/elements/Paragraph';
 
 interface Props {
   data: Comp.Element;
@@ -24,6 +25,9 @@ function ItemPort(props: Props) {
       break;
     case ItemConfig.TITLE:
       children = <MyTitle data={data} />;
+      break;
+    case ItemConfig.PARAGRAPH:
+      children = <Paragraph data={data} />;
       break;
   }
 

@@ -1,10 +1,11 @@
 import { formatMessage } from 'umi-plugin-locale';
 import { InputConfig } from '@/components/ItemInput/entity';
 import { extendBaseProps } from '@/components/elements/base';
+import { ItemConfig } from '@/components/ItemPort/entity';
 
 export const elementsProps: Comp.Element = extendBaseProps({
   id: '',
-  type: 'background',
+  type: ItemConfig.BACKGROUND,
   name: formatMessage({ id: 'drag.item.background' }),
   props: {
     style: {

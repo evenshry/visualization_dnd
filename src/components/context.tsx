@@ -6,6 +6,7 @@ import { uuid } from '@/utils';
 
 import { elementsProps as BackgroundProps } from './elements/Background/entity';
 import { elementsProps as TitleProps } from './elements/MyTitle/entity';
+import { elementsProps as ParagraphProps } from './elements/Paragraph/entity';
 
 interface Props {
   children?: ReactNode;
@@ -51,6 +52,9 @@ export function CtxProvider({ children }: Props) {
         break;
       case ItemConfig.TITLE:
         element = JSON.parse(JSON.stringify(TitleProps));
+        break;
+      case ItemConfig.PARAGRAPH:
+        element = JSON.parse(JSON.stringify(ParagraphProps));
         break;
     }
     element.id = uuid();

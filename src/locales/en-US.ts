@@ -10,6 +10,7 @@ export default {
   // drag.item
   'drag.item.background': 'Background',
   'drag.item.title': 'Title',
+  'drag.item.paragraph': 'Paragraph',
   // button
   'button.close': 'Close',
   'button.home': 'Home',
