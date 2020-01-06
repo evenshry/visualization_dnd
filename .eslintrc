@@ -1,7 +1,5 @@
 {
   "extends": [
-    "eslint-config-umi",
-    "@typescript-eslint",
-    "@typescript-eslint/consistent-type-definitions"
+    "eslint-config-umi"
   ]
 }
