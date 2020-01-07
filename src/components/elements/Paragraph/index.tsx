@@ -17,11 +17,7 @@ function Paragraph(props: Props) {
     }
   }
 
-  return (
-    <section style={style}>
-      <span>{content}</span>
-    </section>
-  );
+  return <section style={style} dangerouslySetInnerHTML={{ __html: content }} />;
 }
 
 export default Paragraph;

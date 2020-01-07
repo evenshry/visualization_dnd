@@ -40,7 +40,7 @@ export const elementsProps: Comp.Element = extendBaseProps({
         text: {
           type: InputConfig.Text,
           name: formatMessage({ id: 'style.content.text' }),
-          value: '这里是段落内容',
+          value: '<p>这里是段落内容</p>',
         },
       },
     },

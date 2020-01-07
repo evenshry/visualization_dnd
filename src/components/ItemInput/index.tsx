@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Input, InputNumber, Select } from 'antd';
 import { InputConfig, SelectConfig } from '@/components/ItemInput/entity';
-import ColorPicker from './ColorPicker';
 import { context } from '../context';
+import ColorPicker from './ColorPicker';
+import TextInput from './TextInput';
 
 const { Option } = Select;
 
@@ -66,7 +67,8 @@ function ItemInput(props: Props) {
 
   // 文本域类型输入框
   else if (data.type === InputConfig.Text) {
-    inputContent = <Input.TextArea value={data.value} rows={2} onChange={handleInputChange} />;
+    // inputContent = <Input.TextArea value={data.value} rows={2} onChange={handleInputChange} />;
+    inputContent = <TextInput value={data.value} onChange={handleValueChange} />;
   }
 
   // 图片类型选择框
