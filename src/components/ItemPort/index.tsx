@@ -59,7 +59,11 @@ function ItemPort(props: Props) {
     return (
       <Draggable key={data.id} draggableId={data.id} index={index}>
         {(provided, snapshot) => (
-          <section ref={provided.innerRef} {...provided.draggableProps}>
+          <section
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            // style={style.flex ? { flex: style.flex } : {}}
+          >
             <section ref={preview} className="editSection" style={{ opacity }}>
               <section className="handler">
                 <section className="icon" ref={drag}>

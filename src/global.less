@@ -2,6 +2,7 @@
 
 :root {
   --promary-color: #1890ff;
+  --promary-color-a: rgba(24, 143, 255, 0.849);
 }
 
 html,
@@ -132,7 +133,7 @@ body,
       .handler {
         .flexRow;
         align-items: center;
-        background-color: var(--promary-color);
+        background-color: var(--promary-color-a);
         font-size: 12px;
         .title {
           flex: 1;
@@ -151,9 +152,6 @@ body,
           &:hover {
             color: #fff;
           }
-        }
-        .toolBar {
-          background-color: var(--promary-color);
         }
       }
     }
@@ -236,6 +234,11 @@ body,
       right: 0px;
     }
   }
+}
+.dropPlaceholder {
+  outline: 1px dashed #d9d9d9;
+  background-color: #fff;
+  height: 100px;
 }
 .bf-container {
   border: 1px solid #d9d9d9;

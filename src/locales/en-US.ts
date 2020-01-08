@@ -38,6 +38,7 @@ export default {
   'style.size.width': 'width',
   'style.size.height': 'height',
   'style.size.minHeight': 'min height',
+  'style.size.flex': 'flex',
   'style.border': 'Border',
   'style.border.width': 'width',
   'style.border.style': 'style',

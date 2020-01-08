@@ -1,8 +1,13 @@
-import { useState, RefObject, useContext } from 'react';
+import { useState, RefObject, useContext, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
 import { context } from '@/components/context';
 import { ItemConfigGroup } from '@/components/ItemPort/entity';
-import { getNodeIndexByOffset } from '@/layouts/utils';
+import {
+  getNodeIndexByOffset,
+  appendDropPlaceholder,
+  removeDropPlaceholder,
+  removePlaceholderWhenOut,
+} from '@/layouts/utils';
 
 /**
  * 放置元素钩子函数
@@ -27,7 +32,7 @@ export function useDropElement<T, P>(ref: RefObject<HTMLDivElement>, data?: Comp
         moveElementOnTree(item.id, hoverIndex, data && data.id);
       } else {
         // 添加节点
-        appendElementToTree(item.type as string, hoverIndex, data && data.id);
+        appendElementToTree(item.type, hoverIndex, data && data.id);
       }
     },
     // 拖动时 获取到容器子元素的序号 以确定放置的位置
@@ -36,7 +41,9 @@ export function useDropElement<T, P>(ref: RefObject<HTMLDivElement>, data?: Comp
       const index = getNodeIndexByOffset(ref, offset);
       if (index !== hoverIndex) {
         setHoverIndex(index);
+        // appendDropPlaceholder(ref, hoverIndex);
       }
+      // removePlaceholderWhenOut(ref, 500);
     },
     // 拖动覆盖到容器的状态
     collect: monitor => ({
@@ -45,6 +52,14 @@ export function useDropElement<T, P>(ref: RefObject<HTMLDivElement>, data?: Comp
   });
 
   connectDrop(ref);
+
+  useEffect(() => {
+    if (isOverCurrent) {
+      // appendDropPlaceholder(ref, hoverIndex);
+    } else {
+      // removeDropPlaceholder(ref);
+    }
+  }, [isOverCurrent]);
 
   return {
     isOverCurrent,

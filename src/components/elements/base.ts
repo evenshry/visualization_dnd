@@ -7,7 +7,7 @@ import { recursionExtendProp } from '@/utils';
  * 拖动时改变背景颜色
  */
 export const bgDraggingOver: CSSProperties = {
-  backgroundColor: '#dedede',
+  backgroundColor: '#eee',
 };
 
 /**
@@ -24,7 +24,7 @@ export const BaseProps: Comp.Element = {
         color: {
           type: InputConfig.Color,
           name: formatMessage({ id: 'style.background.color' }),
-          value: 'rgba(108, 113, 117, 0.3)',
+          value: 'rgba(255, 255, 255, 1)',
         },
       },
       size: {
@@ -37,6 +37,11 @@ export const BaseProps: Comp.Element = {
           type: InputConfig.String,
           name: formatMessage({ id: 'style.size.height' }),
           value: 'auto',
+        },
+        flex: {
+          type: InputConfig.Number,
+          name: formatMessage({ id: 'style.size.flex' }),
+          value: 0,
         },
       },
       border: {
@@ -139,6 +144,9 @@ export function getStyleByProps(element: Comp.Element): CSSProperties {
       }
       if (styleConfig.size.minHeight && styleConfig.size.minHeight.value !== undefined) {
         style.minHeight = styleConfig.size.minHeight.value + 'px';
+      }
+      if (styleConfig.size.flex && styleConfig.size.flex.value) {
+        style.flex = styleConfig.size.flex.value;
       }
     }
     // 边框

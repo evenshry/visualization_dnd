@@ -38,6 +38,7 @@ export default {
   'style.size.width': '宽度',
   'style.size.height': '高度',
   'style.size.minHeight': '最小高度',
+  'style.size.flex': '布局占比',
   'style.border': '边框',
   'style.border.width': '边框宽度',
   'style.border.style': '边框样式',

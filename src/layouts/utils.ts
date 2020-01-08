@@ -61,9 +61,11 @@ export function appendDropPlaceholder(ref: RefObject<HTMLDivElement>, index: num
  */
 export function removeDropPlaceholder(ref: RefObject<HTMLDivElement>): void {
   if (ref.current) {
-    const placeholder = ref.current.querySelector('.dropPlaceholder');
-    if (placeholder) {
-      placeholder.remove();
+    const placeholders = ref.current.querySelectorAll('.dropPlaceholder');
+    if (placeholders.length > 0) {
+      for (let i = 0; i < placeholders.length; i++) {
+        placeholders.item(i).remove();
+      }
     }
   }
 }
