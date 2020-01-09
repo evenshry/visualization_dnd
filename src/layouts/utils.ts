@@ -6,7 +6,7 @@ import { RefObject } from 'react';
  * @param offset 偏移位置
  * @return 节点序号
  */
-export function getNodeIndexByOffset(ref: RefObject<HTMLDivElement>, offset: any): number {
+function getNodeIndexByOffset(ref: RefObject<HTMLDivElement>, offset: any): number {
   if (offset && ref.current && ref.current.childElementCount > 0) {
     const nodes = ref.current.children;
     let height = 0;
@@ -36,7 +36,7 @@ export function getNodeIndexByOffset(ref: RefObject<HTMLDivElement>, offset: any
  * @param ref 父节点
  * @param index 位置
  */
-export function appendDropPlaceholder(ref: RefObject<HTMLDivElement>, index: number): void {
+function appendDropPlaceholder(ref: RefObject<HTMLDivElement>, index: number): void {
   if (ref.current) {
     removeDropPlaceholder(ref);
     const nodes = ref.current.children;
@@ -59,7 +59,7 @@ export function appendDropPlaceholder(ref: RefObject<HTMLDivElement>, index: num
  * 移除放置位置指示器
  * @param ref 父节点
  */
-export function removeDropPlaceholder(ref: RefObject<HTMLDivElement>): void {
+function removeDropPlaceholder(ref: RefObject<HTMLDivElement>): void {
   if (ref.current) {
     const placeholders = ref.current.querySelectorAll('.dropPlaceholder');
     if (placeholders.length > 0) {
@@ -77,7 +77,7 @@ let removeWhenOutTimer: any = null;
  * 超时移除 位置指示器
  * @param ref 父节点
  */
-export function removePlaceholderWhenOut(ref: RefObject<HTMLDivElement>, delay: number): void {
+function removePlaceholderWhenOut(ref: RefObject<HTMLDivElement>, delay: number): void {
   if (removeWhenOutTimer) {
     clearTimeout(removeWhenOutTimer);
   }
@@ -85,3 +85,10 @@ export function removePlaceholderWhenOut(ref: RefObject<HTMLDivElement>, delay: 
     removeDropPlaceholder(ref);
   }, delay);
 }
+
+export {
+  getNodeIndexByOffset,
+  appendDropPlaceholder,
+  removeDropPlaceholder,
+  removePlaceholderWhenOut,
+};

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Input, InputNumber, Select } from 'antd';
 import { InputConfig, SelectConfig } from '@/components/ItemInput/entity';
 import { context } from '../context';
@@ -14,22 +14,18 @@ interface Props {
 function ItemInput(props: Props) {
   const { data } = props;
   const { updateElementStyle } = useContext(context);
+  const [inValue, setInValue] = useState<any>(data.value);
+
+  useEffect(() => {
+    setInValue(inValue);
+  }, [data.value]);
 
   /**
    * 输入框 处理值
    */
-  function handleInputChange(event: any) {
+  function handleEventChange(event: any) {
     const value: string = event.target.value;
     handleValueChange(value);
-  }
-
-  /**
-   * 字符串类型 处理值
-   */
-  function handleValueChange(value: string) {
-    if (data.key && value !== undefined) {
-      updateElementStyle(data.key, value.toString());
-    }
   }
 
   /**
@@ -37,7 +33,7 @@ function ItemInput(props: Props) {
    */
   function handleNumberChange(value?: number) {
     if (data.key && value !== undefined) {
-      updateElementStyle(data.key, value.toString());
+      handleValueChange(value);
     }
   }
 
@@ -48,38 +44,47 @@ function ItemInput(props: Props) {
     handleValueChange(value);
   }
 
+  /**
+   * 触发值改变
+   */
+  function handleValueChange(value: any) {
+    if (data.key && value !== undefined) {
+      updateElementStyle(data.key, value);
+      setInValue(value);
+    }
+  }
+
   let inputContent = <Input />;
 
   // 文本类型输入框
   if (data.type === InputConfig.String) {
-    inputContent = <Input value={data.value} onChange={handleInputChange} />;
+    inputContent = <Input value={inValue} onChange={handleEventChange} />;
   }
 
   // 数字类型输入框
   else if (data.type === InputConfig.Number) {
-    inputContent = <InputNumber value={data.value} min={0} onChange={handleNumberChange} />;
+    inputContent = <InputNumber value={inValue} min={0} onChange={handleNumberChange} />;
   }
 
   // 颜色类型选择框
   else if (data.type === InputConfig.Color) {
-    inputContent = <ColorPicker value={data.value} onChange={handleValueChange} />;
+    inputContent = <ColorPicker value={inValue} onChange={handleValueChange} />;
   }
 
-  // 文本域类型输入框
+  // 富文本类型输入框
   else if (data.type === InputConfig.Text) {
-    // inputContent = <Input.TextArea value={data.value} rows={2} onChange={handleInputChange} />;
-    inputContent = <TextInput value={data.value} onChange={handleValueChange} />;
+    inputContent = <TextInput value={inValue} onChange={handleValueChange} />;
   }
 
   // 图片类型选择框
   else if (data.type === InputConfig.Image) {
-    inputContent = <Input value={data.value} onChange={handleInputChange} />;
+    inputContent = <Input value={inValue} onChange={handleEventChange} />;
   }
 
   // 其他类型选择框
   else {
     inputContent = (
-      <Select value={data.value} className="w100" onChange={handleSelectChange}>
+      <Select value={inValue} className="w100" onChange={handleSelectChange}>
         {SelectConfig[data.type].map((item, index) => (
           <Option key={index} value={item.value}>
             {item.label}

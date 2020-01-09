@@ -1,3 +1,5 @@
 declare namespace Common {
-  type AnyObject = { [key: string]: any };
+  interface AnyObject {
+    [key: string]: any;
+  }
 }

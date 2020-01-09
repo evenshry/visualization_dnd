@@ -38,7 +38,7 @@ export const elementsProps: Comp.Element = extendBaseProps({
       },
       content: {
         title: {
-          type: InputConfig.Text,
+          type: InputConfig.String,
           name: formatMessage({ id: 'style.content.title' }),
           value: '标题',
         },

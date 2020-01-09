@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { setLocale, getLocale, formatMessage } from 'umi-plugin-locale';
-import { context } from '../../components/context';
-import DragItem from '@/components/DragItem';
+import { context } from '@/components/context';
 import { Select, Button } from 'antd';
 import router from 'umi/router';
 
@@ -19,7 +18,7 @@ const LocaleConfig = [
 ];
 
 function Headers() {
-  const { elementsType, updateElementMode } = useContext(context);
+  const { updateElementMode } = useContext(context);
 
   function handleSelectChange(value: string) {
     setLocale(value);

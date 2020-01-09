@@ -2,7 +2,7 @@
  * 生成10位随机码
  */
 const uuidConfig = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-export function uuid() {
+function uuid() {
   let result = '';
   for (let i = 0; i < 10; i++) {
     const pos = Math.round(Math.random() * (uuidConfig.length - 1));
@@ -15,7 +15,7 @@ export function uuid() {
  * 判断值是否为对象
  * @param object 任何值
  */
-export function isObject(object: any) {
+function isObject(object: any) {
   return (typeof object === 'object' || typeof object === 'function') && object !== null;
 }
 
@@ -24,7 +24,7 @@ export function isObject(object: any) {
  * @param 被继承对象
  * @param 继承对象
  */
-export function recursionExtendProp(source: Common.AnyObject, target: Common.AnyObject) {
+function recursionExtendProp(source: Common.AnyObject, target: Common.AnyObject) {
   for (let key in source) {
     if (source.hasOwnProperty(key)) {
       if (isObject(source[key])) {
@@ -40,3 +40,5 @@ export function recursionExtendProp(source: Common.AnyObject, target: Common.Any
     }
   }
 }
+
+export { uuid, isObject, recursionExtendProp };
