@@ -157,7 +157,8 @@ export function CtxProvider({ children }: Props) {
   };
 
   /**
-   * 更新当前节点元素属性 (防抖包装)
+   * 更新当前节点元素属性
+   * 防抖包装
    * @param key 属性
    * @param value 属性值
    */
@@ -171,23 +172,6 @@ export function CtxProvider({ children }: Props) {
       setElementsTree([...newTree]);
     }
   }, 500);
-
-  // /**
-  //  * 更新当前节点元素属性
-  //  * @param key 属性
-  //  * @param value 属性值
-  //  */
-  // const updateElementStyle = (key: string, value: string) => {
-  //   if (currtntElement) {
-  //     const targetId = currtntElement.id;
-  //     const newTree = recursionUpdateNode(elementsTree, targetId, node => {
-  //       node.props = updateElementProps(node, key, value);
-  //       // setCurrtntElement(JSON.parse(JSON.stringify(node)));
-  //       return node;
-  //     });
-  //     setElementsTree([...newTree]);
-  //   }
-  // };
 
   /**
    * 更新节点编辑模式
