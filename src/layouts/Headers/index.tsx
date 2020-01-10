@@ -3,6 +3,7 @@ import { setLocale, getLocale, formatMessage } from 'umi-plugin-locale';
 import { context } from '@/components/context';
 import { Select, Button } from 'antd';
 import router from 'umi/router';
+import { fetchUsers } from '@/layouts/api';
 
 const { Option } = Select;
 
@@ -37,6 +38,7 @@ function Headers() {
 
       <section className="buttons">
         <Button onClick={handlePreview}>{formatMessage({ id: 'button.preview' })}</Button>
+        <Button onClick={fetchUsers}>测试</Button>
       </section>
 
       <section className="switchLocale">
