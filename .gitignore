@@ -9,7 +9,7 @@
 
 # production
 /dist
-/api/php
+/service
 
 # misc
 .DS_Store
