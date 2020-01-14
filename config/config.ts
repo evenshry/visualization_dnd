@@ -1,19 +1,10 @@
 import { IConfig } from 'umi-types';
+import routes from 'config/routes';
 
 // ref: https://umijs.org/config/
 const config: IConfig = {
   treeShaking: true,
-  routes: [
-    {
-      path: '/',
-      title: 'app.index',
-      component: '../layouts/index',
-      routes: [
-        { path: '/', title: 'app.home', component: '../pages/index' },
-        { path: '/preview', title: 'app.preview', component: '../pages/preview' },
-      ],
-    },
-  ],
+  routes,
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     [
