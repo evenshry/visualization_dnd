@@ -11,6 +11,7 @@ export default {
   'drag.item.background': '背景框',
   'drag.item.title': '标题栏',
   'drag.item.paragraph': '段落栏',
+  'drag.item.barchart': '柱状图',
   // button
   'button.close': '关闭',
   'button.home': '首页',

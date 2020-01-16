@@ -14,6 +14,7 @@ import {
 import { elementsProps as BackgroundProps } from './elements/Background/entity';
 import { elementsProps as TitleProps } from './elements/MyTitle/entity';
 import { elementsProps as ParagraphProps } from './elements/Paragraph/entity';
+import { elementsProps as BarChartProps } from './charts/BarChart/entity';
 
 interface Props {
   children?: ReactNode;
@@ -62,6 +63,9 @@ export function CtxProvider({ children }: Props) {
         break;
       case ItemConfig.PARAGRAPH:
         element = JSON.parse(JSON.stringify(ParagraphProps));
+        break;
+      case ItemConfig.BARCHART:
+        element = JSON.parse(JSON.stringify(BarChartProps));
         break;
     }
     element.id = uuid();

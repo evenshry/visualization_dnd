@@ -18,4 +18,9 @@ export const elementsTypeConfig: Array<Comp.EleType> = [
     type: ItemConfig.PARAGRAPH,
     name: formatMessage({ id: 'drag.item.paragraph' }),
   },
+  {
+    id: uuid(),
+    type: ItemConfig.BARCHART,
+    name: formatMessage({ id: 'drag.item.barchart' }),
+  },
 ];

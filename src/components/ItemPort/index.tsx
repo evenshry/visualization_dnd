@@ -9,6 +9,7 @@ import { Button } from 'antd';
 import Background from '@/components/elements/Background';
 import MyTitle from '@/components/elements/MyTitle';
 import Paragraph from '@/components/elements/Paragraph';
+import BarChart from '@/components/charts/BarChart';
 
 interface Props {
   data: Comp.Element;
@@ -28,6 +29,9 @@ function ItemPort(props: Props) {
       break;
     case ItemConfig.PARAGRAPH:
       children = <Paragraph data={data} />;
+      break;
+    case ItemConfig.BARCHART:
+      children = <BarChart data={data} />;
       break;
   }
 
