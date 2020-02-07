@@ -8,7 +8,7 @@ const routes: IConfig.IRoute[] = [
     routes: [
       { path: '/', title: 'app.home', component: '../pages/index' },
       { path: '/preview', title: 'app.preview', component: '../pages/preview' },
-      { path: '/testMemo', component: '../pages/testMemo' },
+      { path: '/test', component: '../pages/testMemo' },
     ],
   },
 ];

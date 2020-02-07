@@ -6,7 +6,7 @@ import { createHashHistory } from 'history';
 const history = createHashHistory();
 type req = Http.HttpRequestConfig;
 
-const URL = 'http://hyu7465320001.my3w.com/service';
+const URL = 'http://sloveg.store/service';
 
 // 请求地址
 axios.defaults.baseURL = URL;
