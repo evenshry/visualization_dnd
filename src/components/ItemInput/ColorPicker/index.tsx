@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Select, Button } from 'antd';
 import { ChromePicker, ColorResult } from 'react-color';
 import { formatMessage } from 'umi-plugin-locale';
+import styles from './style.less';
 
 interface Props {
   value: string;
@@ -39,16 +40,16 @@ function ColorPicker(props: Props) {
 
   return (
     <Select
-      suffixIcon={<div className="colorIcon" style={{ backgroundColor: value }} />}
-      getPopupContainer={node => document.getElementById('sideBarContainer') || node}
+      suffixIcon={<div className={styles.colorIcon} style={{ backgroundColor: value }} />}
+      getPopupContainer={(node) => document.getElementById('sideBarContainer') || node}
       open={colorPickVisible}
       dropdownMatchSelectWidth={false}
       onDropdownVisibleChange={handleOpenDropdown}
       onBlur={handleCloseDropdown}
       dropdownRender={() => (
-        <section className="colorPickContainer" onMouseDown={event => event.preventDefault()}>
+        <section className={styles.colorPickContainer} onMouseDown={(event) => event.preventDefault()}>
           <ChromePicker color={value} onChangeComplete={handleColorChange} />
-          <section className="colorPickBtn">
+          <section className={styles.colorPickBtn}>
             <Button type="default" onClick={handleCloseDropdown}>
               {formatMessage({ id: 'button.close' })}
             </Button>

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Input, InputNumber, Select } from 'antd';
 import { InputConfig, SelectConfig } from '@/components/ItemInput/entity';
 import { context } from '../context';
-import ColorPicker from './ColorPicker';
+import ColorPicker from './ColorPicker/index';
 import TextInput from './TextInput';
 
 const { Option } = Select;

@@ -1,9 +1,7 @@
 @import '~antd/dist/antd.less';
-
-:root {
-  --promary-color: #1890ff;
-  --promary-color-a: rgba(24, 143, 255, 0.849);
-}
+@import './assets/css/variables.css';
+@import './assets/css/variables.less';
+@import './assets/css/classes.less';
 
 html,
 body,
@@ -14,67 +12,6 @@ body,
 * {
   margin: 0;
   padding: 0;
-}
-
-.flexRow {
-  display: flex;
-  flex-direction: row;
-}
-
-.flexRowRight {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-/* margin */
-.mgt10 {
-  margin-top: 10px;
-}
-
-.mgt20 {
-  margin-top: 20px;
-}
-
-.mgl10 {
-  margin-left: 10px;
-}
-
-.mgl20 {
-  margin-left: 20px;
-}
-
-.mgr10 {
-  margin-right: 10px;
-}
-
-.mgr20 {
-  margin-right: 20px;
-}
-
-.mgb10 {
-  margin-bottom: 10px;
-}
-
-.w100 {
-  width: 100%;
-}
-
-.bottomHr {
-  position: relative;
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    transform: scale(0.5);
-    transform-origin: 0 0;
-    pointer-events: none;
-    box-sizing: border-box;
-    border-bottom: 1px solid #d9d9d9;
-  }
 }
 
 .ant-collapse-item {
@@ -165,13 +102,6 @@ body,
   .navContainer {
     transform: none;
     background-color: #fff;
-    .navItem {
-      width: 100px;
-      height: 50px;
-      line-height: 50px;
-      text-align: center;
-      .bottomHr;
-    }
   }
 }
 /** sideBar **/
