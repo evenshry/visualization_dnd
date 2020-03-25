@@ -3,7 +3,8 @@ import { Input, InputNumber, Select } from 'antd';
 import { InputConfig, SelectConfig } from '@/components/ItemInput/entity';
 import { context } from '../context';
 import ColorPicker from './ColorPicker/index';
-import TextInput from './TextInput';
+import TextInput from './TextInput/index';
+import styles from './style.less';
 
 const { Option } = Select;
 
@@ -95,9 +96,9 @@ function ItemInput(props: Props) {
   }
 
   return (
-    <section className="inputRow">
-      <section className="label">{data.name}：</section>
-      <section className="value">{inputContent}</section>
+    <section className={styles.inputRow}>
+      <section className={styles.label}>{data.name}：</section>
+      <section className={styles.value}>{inputContent}</section>
     </section>
   );
 }

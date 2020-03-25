@@ -1,0 +1,36 @@
+@import (reference) '~@/assets/css/variables.less';
+@import (reference) '~@/assets/css/classes.less';
+
+.sideBar {
+  position: relative;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 0px;
+  opacity: 0;
+  overflow-y: auto;
+  transform: translate(100%, 0);
+  visibility: hidden;
+  height: 100%;
+  background-color: #fff;
+  transition: all 0.2s;
+  &.show {
+    opacity: 1;
+    width: 300px;
+    width: 320px;
+    transform: translate(0, 0);
+    visibility: visible;
+  }
+  .toolBar {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 9;
+    button {
+      color: var(--promary-color);
+      &:hover {
+        color: var(--promary-color);
+      }
+    }
+  }
+}

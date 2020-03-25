@@ -1,0 +1,31 @@
+@import (reference) '~@/assets/css/variables.less';
+@import (reference) '~@/assets/css/classes.less';
+
+.editSection {
+  position: relative;
+  outline: 1px solid var(--promary-color);
+  .handler {
+    .flexRow;
+    align-items: center;
+    background-color: var(--promary-color-a);
+    font-size: 12px;
+    .title {
+      flex: 1;
+      height: 100%;
+      .flexRow;
+      align-items: center;
+      .text {
+        color: #fff;
+      }
+    }
+    button {
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      font-size: 12px;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}

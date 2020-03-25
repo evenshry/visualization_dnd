@@ -4,18 +4,19 @@ import { context } from '@/components/context';
 import { Select, Button } from 'antd';
 import router from 'umi/router';
 import { fetchUsers } from '@/layouts/api';
+import styles from './style.less';
 
 const { Option } = Select;
 
 const LocaleConfig = [
   {
     value: 'en-US',
-    label: 'English',
+    label: 'English'
   },
   {
     value: 'zh-CN',
-    label: '简体中文',
-  },
+    label: '简体中文'
+  }
 ];
 
 function Headers() {
@@ -31,17 +32,17 @@ function Headers() {
   }
 
   return (
-    <section className="header">
-      <section className="navContainer">
-        <section className="logo">{formatMessage({ id: 'app.name' })}</section>
+    <section className={styles.header}>
+      <section className={styles.navContainer}>
+        <section className={styles.logo}>{formatMessage({ id: 'app.name' })}</section>
       </section>
 
-      <section className="buttons">
+      <section className={styles.buttons}>
         <Button onClick={handlePreview}>{formatMessage({ id: 'button.preview' })}</Button>
         <Button onClick={fetchUsers}>测试</Button>
       </section>
 
-      <section className="switchLocale">
+      <section className={styles.switchLocale}>
         <Select value={getLocale()} className="w100" onChange={handleSelectChange}>
           {LocaleConfig.map((item, index) => (
             <Option key={index} value={item.value}>

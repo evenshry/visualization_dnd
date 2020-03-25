@@ -3,6 +3,7 @@ import { formatMessage } from 'umi-plugin-locale';
 import { Tabs, Button, Collapse, Icon } from 'antd';
 import { context } from '../../components/context';
 import ItemInput from '@/components/ItemInput';
+import styles from './style.less';
 
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
@@ -19,12 +20,12 @@ function SideBar() {
         for (let propKey in propConfig) {
           propData.push({
             ...propConfig[propKey],
-            key: `${blockKey}.${propKey}`,
+            key: `${blockKey}.${propKey}`
           });
         }
         styleData.push({
           title: formatMessage({ id: `style.${blockKey}` }),
-          data: propData,
+          data: propData
         });
       }
     }
@@ -34,16 +35,12 @@ function SideBar() {
     }
 
     return (
-      <section id="sideBarContainer" className={`sideBar ${visibleSideBar ? 'show' : ''}`}>
-        <section className="toolBar">
+      <section id="sideBarContainer" className={`${styles.sideBar} ${visibleSideBar ? styles.show : ''}`}>
+        <section className={styles.toolBar}>
           <span>
             {formatMessage({ id: 'section.id' })}: {currtntElement.id}
           </span>
-          <Button
-            icon={visibleSideBar ? 'double-right' : 'double-left'}
-            onClick={handleVisible}
-            type="link"
-          />
+          <Button icon={visibleSideBar ? 'double-right' : 'double-left'} onClick={handleVisible} type="link" />
         </section>
 
         <Tabs type="card">
@@ -52,9 +49,7 @@ function SideBar() {
               <Collapse
                 bordered={false}
                 defaultActiveKey={['item_0']}
-                expandIcon={({ isActive }) => (
-                  <Icon type="caret-right" rotate={isActive ? 90 : 0} />
-                )}
+                expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}
               >
                 {styleData.map((item, index) => (
                   <Panel header={item.title} key={`item_${index}`}>

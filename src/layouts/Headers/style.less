@@ -1,0 +1,31 @@
+@import (reference) '~@/assets/css/variables.less';
+@import (reference) '~@/assets/css/classes.less';
+
+.header {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  .flexRow;
+  align-items: center;
+  .bottomHr;
+  .navContainer {
+    flex: 1;
+    .flexRow;
+    align-items: center;
+    .logo {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+  .buttons {
+    .flexRow;
+    align-items: center;
+    margin-left: 20px;
+  }
+  .switchLocale {
+    .flexRow;
+    width: 100px;
+    align-items: center;
+    margin-left: 20px;
+  }
+}

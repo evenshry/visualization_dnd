@@ -49,15 +49,9 @@ function TextInput(props: Props) {
   }
 
   return (
-    <div className="my-component">
+    <div>
       <Button onClick={hancleOpen}>编辑</Button>
-      <Modal
-        title="编辑内容"
-        width="800px"
-        visible={visible}
-        onOk={hancleSure}
-        onCancel={hancleClose}
-      >
+      <Modal title="编辑内容" width="800px" visible={visible} onOk={hancleSure} onCancel={hancleClose}>
         <BraftEditor value={editorState} onChange={handleEditorChange} onSave={submitContent} />
       </Modal>
     </div>

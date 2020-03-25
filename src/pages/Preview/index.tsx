@@ -3,6 +3,7 @@ import { context } from '@/components/context';
 import ItemPort from '@/components/ItemPort';
 import { Button } from 'antd';
 import router from 'umi/router';
+import styles from './style.less';
 
 export default function() {
   const { elementsTree, updateElementMode } = useContext(context);
@@ -13,8 +14,8 @@ export default function() {
   }
 
   return (
-    <section className="preview">
-      <section className="buttons">
+    <section className={styles.preview}>
+      <section className={styles.buttons}>
         <Button icon="home" type="link" onClick={handleHome} />
       </section>
 

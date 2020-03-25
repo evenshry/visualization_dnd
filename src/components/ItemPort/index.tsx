@@ -5,6 +5,7 @@ import { formatMessage } from 'umi-plugin-locale';
 import { context } from '../context';
 import { ItemConfig } from './entity';
 import { Button } from 'antd';
+import styles from './style.less';
 
 import Background from '@/components/elements/Background';
 import MyTitle from '@/components/elements/MyTitle';
@@ -40,9 +41,9 @@ function ItemPort(props: Props) {
 
     const [{ opacity }, drag, preview] = useDrag<Comp.Element, unknown, any>({
       item: { ...data, index },
-      collect: monitor => ({
-        opacity: monitor.isDragging() ? 0.4 : 1,
-      }),
+      collect: (monitor) => ({
+        opacity: monitor.isDragging() ? 0.4 : 1
+      })
     });
 
     function edit() {
@@ -68,22 +69,22 @@ function ItemPort(props: Props) {
             {...provided.draggableProps}
             // style={style.flex ? { flex: style.flex } : {}}
           >
-            <section ref={preview} className="editSection" style={{ opacity }}>
-              <section className="handler">
-                <section className="icon" ref={drag}>
+            <section ref={preview} className={styles.editSection} style={{ opacity }}>
+              <section className={styles.handler}>
+                <section className={styles.icon} ref={drag}>
                   <Button icon="drag" type="link" />
                 </section>
 
-                <section className="title" {...provided.dragHandleProps}>
-                  <span className="text">
+                <section className={styles.title} {...provided.dragHandleProps}>
+                  <span className={styles.text}>
                     {formatMessage({ id: 'section.id' })}: {data.id}；
                   </span>
-                  <span className="text">
+                  <span className={styles.text}>
                     {formatMessage({ id: 'section.name' })}: {data.name}
                   </span>
                 </section>
 
-                <section className="toolBar">
+                <section className={styles.toolBar}>
                   <Button icon="form" type="link" onClick={edit} />
                   <Button icon="delete" type="link" onClick={remove} />
                 </section>
