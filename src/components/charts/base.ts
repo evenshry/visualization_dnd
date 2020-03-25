@@ -11,50 +11,8 @@ function getOptionByProps(element: Comp.Element): ObjectMap {
       }
     }
   }
-  let dataAxis = [
-    '点',
-    '击',
-    '柱',
-    '子',
-    '或',
-    '者',
-    '两',
-    '指',
-    '在',
-    '触',
-    '屏',
-    '上',
-    '滑',
-    '动',
-    '能',
-    '够',
-    '自',
-    '动',
-    '缩',
-    '放',
-  ];
-  let data = [
-    220,
-    182,
-    191,
-    234,
-    290,
-    330,
-    310,
-    123,
-    442,
-    321,
-    90,
-    149,
-    210,
-    122,
-    133,
-    334,
-    198,
-    123,
-    125,
-    220,
-  ];
+  let dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
+  let data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
   let yMax = 500;
   let dataShadow = [];
   for (let i = 0; i < data.length; i++) {
@@ -63,67 +21,67 @@ function getOptionByProps(element: Comp.Element): ObjectMap {
   options = {
     title: {
       text: '特性示例：渐变色 阴影 点击缩放',
-      subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom',
+      subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
     },
     xAxis: {
       data: dataAxis,
       axisLabel: {
         inside: true,
         textStyle: {
-          color: '#fff',
-        },
+          color: '#fff'
+        }
       },
       axisTick: {
-        show: false,
+        show: false
       },
       axisLine: {
-        show: false,
+        show: false
       },
-      z: 10,
+      z: 10
     },
     yAxis: {
       axisLine: {
-        show: false,
+        show: false
       },
       axisTick: {
-        show: false,
+        show: false
       },
       axisLabel: {
         textStyle: {
-          color: '#999',
-        },
-      },
+          color: '#999'
+        }
+      }
     },
     dataZoom: [
       {
-        type: 'inside',
-      },
+        type: 'inside'
+      }
     ],
     series: [
       {
         // For shadow
         type: 'bar',
         itemStyle: {
-          color: 'rgba(0,0,0,0.05)',
+          color: 'rgba(0,0,0,0.05)'
         },
         barGap: '-100%',
         barCategoryGap: '40%',
         data: dataShadow,
-        animation: false,
+        animation: false
       },
       {
         type: 'bar',
         itemStyle: {
-          color: '#ff0000',
+          color: '#ff0000'
         },
         emphasis: {
           itemStyle: {
-            color: '#ff1100',
-          },
+            color: '#ff1100'
+          }
         },
-        data: data,
-      },
-    ],
+        data: data
+      }
+    ]
   };
   return options;
 }
