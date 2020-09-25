@@ -2,12 +2,7 @@ import { useState, RefObject, useContext, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
 import { context } from '@/components/context';
 import { ItemConfigGroup } from '@/components/ItemPort/entity';
-import {
-  getNodeIndexByOffset,
-  appendDropPlaceholder,
-  removeDropPlaceholder,
-  removePlaceholderWhenOut,
-} from '@/layouts/utils';
+import { getNodeIndexByOffset } from '@/layouts/utils';
 
 /**
  * 放置元素钩子函数
@@ -41,12 +36,10 @@ export function useDropElement<T, P>(ref: RefObject<HTMLDivElement>, data?: Comp
       const index = getNodeIndexByOffset(ref, offset);
       if (index !== hoverIndex) {
         setHoverIndex(index);
-        // appendDropPlaceholder(ref, hoverIndex);
       }
-      // removePlaceholderWhenOut(ref, 500);
     },
     // 拖动覆盖到容器的状态
-    collect: monitor => ({
+    collect: (monitor) => ({
       isOverCurrent: monitor.isOver({ shallow: true }),
     }),
   });
@@ -55,9 +48,9 @@ export function useDropElement<T, P>(ref: RefObject<HTMLDivElement>, data?: Comp
 
   useEffect(() => {
     if (isOverCurrent) {
-      // appendDropPlaceholder(ref, hoverIndex);
+      // do some placeholder
     } else {
-      // removeDropPlaceholder(ref);
+      // remove placeholder
     }
   }, [isOverCurrent]);
 

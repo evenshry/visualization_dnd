@@ -1,15 +1,23 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios from 'axios';
 import { Http } from './interface';
 import { message } from 'antd';
-import { createHashHistory } from 'history';
+import router from 'umi/router';
 
-const history = createHashHistory();
 type req = Http.HttpRequestConfig;
 
-const URL = 'https://sloveg.store/sg_server/api';
+let host = 'https://api.sloveg.store'; // 服务地址
+
+// if (process.env.UMI_ENV) {
+//   if (process.env.UMI_ENV === 'pub') {
+//     host = 'http://localhost'; // 测试地址
+//   } else {
+//     host = 'https://sloveg.store/sg_server'; // 正式地址
+//   }
+// }
 
 // 请求地址
-axios.defaults.baseURL = URL;
+const ApiURL = `${host}/`;
+axios.defaults.baseURL = ApiURL;
 
 /**
  * 请求头信息拦截调整
@@ -20,11 +28,14 @@ axios.interceptors.request.use(
       config.timeout = 30 * 1000;
     }
     // 给每个请求新增时间戳
-    config.params = Object.assign({ _s: Date.now() }, config.params);
-
-    if (!config.withOutAuth) {
+    // config.params = Object.assign({ _s: Date.now() }, config.params);
+    // 添加Token
+    if (!config.noAuth) {
       const token = localStorage.getItem('TOKEN');
-      config.headers['Authorization'] = token;
+      config.headers['authorization'] = token;
+    }
+    if (!config.headers['Content-Type']) {
+      config.headers['Content-Type'] = 'application/json;charset=UTF-8';
     }
     return config;
   },
@@ -46,45 +57,55 @@ const ERROR_MSG: { [key: number]: string } = {
  * 请求头信息拦截调整
  */
 axios.interceptors.response.use(
-  (response: AxiosResponse<Http.ServerResponse<any>>): any => {
-    // console.log('success', response);
-    const result = response.data;
+  (response): any => {
+    const result = response.data || {};
     // 非成功状态提示
     if (!result.success) {
       const msg = result.message || '出错了，请重试！';
-      const error = new Error(msg);
       message.error(msg);
+      const error = new Error(msg);
       return Promise.reject(error);
     }
     return result;
   },
-  (error: AxiosError<Http.ServerResponse<any>>) => {
+  error => {
     // console.log('error', error);
-    const result = error.response?.data;
-    message.error(
-      (error.code && ERROR_MSG[Number(error.code)]) || result?.message || '出错了，请重试！',
-    );
-    if (result?.status === 401) {
-      history.push('/login');
+    if (error.data && !error.data.message) {
+      const code: number = error.status || 404;
+      error.data.message = ERROR_MSG[code] || '发生了预期之外的错误';
+    }
+    const result = error.response.data || {};
+    message.error(result.message || '出错了，请重试！');
+    if (result.status === 401) {
+      router.push('/login');
     }
     return Promise.reject(error);
   },
 );
 
-function get<T>(url: string, config?: req): Promise<Http.ServerResponse<T>> {
+export function get<T>(url: string, config?: req): Promise<Http.ServerResponse<T>> {
   return axios.get(url, config);
 }
 
-function post<T>(url: string, params: any, config?: req): Promise<Http.ServerResponse<T>> {
+export function post<T>(url: string, params: any, config?: req): Promise<Http.ServerResponse<T>> {
   return axios.post(url, params, config);
 }
 
-function put<T>(url: string, params: any, config?: req): Promise<Http.ServerResponse<T>> {
+export function put<T>(url: string, params: any, config?: req): Promise<Http.ServerResponse<T>> {
   return axios.put(url, params, config);
 }
 
-function _delete<T>(url: string, config?: req): Promise<Http.ServerResponse<T>> {
+export function _delete<T>(url: string, config?: req): Promise<Http.ServerResponse<T>> {
   return axios.delete(url, config);
 }
 
-export { URL, get, post, put, _delete as delete };
+const http = {
+  ApiURL,
+  host,
+  get,
+  post,
+  put,
+  delete: _delete,
+};
+
+export default http;

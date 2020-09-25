@@ -5,8 +5,8 @@ import path from 'path';
 // ref: https://umijs.org/config/
 const config: IConfig = {
   routes,
-  treeShaking: false,
-  exportStatic: true,
+  treeShaking: true,
+  history: 'hash',
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     [
@@ -28,14 +28,28 @@ const config: IConfig = {
           default: 'zh-CN',
         },
         routes: {
-          exclude: [/components\//],
+          exclude: [/assets\//, /components\//, /hooks\//, /stores\//, /utils\//],
         },
       },
     ],
   ],
-  // chainWebpack(config, { webpack }) {},
-  alias: {
-    '@': path.resolve(__dirname, '../src'),
+  
+  chainWebpack(config) {
+    // console.log(webpack);
+    // 设置 alias
+    config.resolve.alias.set('@', path.resolve(__dirname, '../src'));
+    // 判断环境
+    const isDev = process.env.NODE_ENV === 'development';
+    // 打包js到 js文件夹下
+    const hash = !isDev ? '.[contenthash:8]' : '';
+    config.output.chunkFilename(`js/[name]${hash}.async.js`);
+    // 打包css到 css文件夹下
+    config.plugin('extract-css').tap(args => [
+      {
+        ...args[0],
+        chunkFilename: `css/[name]${hash}.chunk.css`,
+      },
+    ]);
   },
 };
 

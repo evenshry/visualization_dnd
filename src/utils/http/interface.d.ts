@@ -5,11 +5,9 @@ declare namespace Http {
    * server端返回的数据格式
    */
   interface ServerResponse<T> {
-    readonly success: boolean;
-    readonly status: number;
     readonly data: T;
     readonly message: string;
-    readonly timestamp: number;
+    readonly success: boolean;
   }
 
   /**
@@ -19,6 +17,12 @@ declare namespace Http {
     /**
      * 不验证
      */
-    withOutAuth?: boolean;
+    noAuth?: boolean;
   }
+
+  // 一般返回数据格式
+  type PrNormal<T> = Promise<Http.ServerResponse<T>>;
+
+  // 分页返回数据格式
+  type PrPage<T> = Promise<Http.ServerResponse<Common.PageResult<T>>>;
 }

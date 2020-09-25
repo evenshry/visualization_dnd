@@ -32,7 +32,7 @@ function getNodeIndexByOffset(ref: RefObject<HTMLDivElement>, offset: any): numb
 }
 
 /**
- * 添加放置位置指示器
+ * 添加放置位置指示器 未用到
  * @param ref 父节点
  * @param index 位置
  */
@@ -56,7 +56,7 @@ function appendDropPlaceholder(ref: RefObject<HTMLDivElement>, index: number): v
 }
 
 /**
- * 移除放置位置指示器
+ * 移除放置位置指示器 未用到
  * @param ref 父节点
  */
 function removeDropPlaceholder(ref: RefObject<HTMLDivElement>): void {
@@ -74,7 +74,7 @@ function removeDropPlaceholder(ref: RefObject<HTMLDivElement>): void {
 let removeWhenOutTimer: any = null;
 
 /**
- * 超时移除 位置指示器
+ * 超时移除 位置指示器 未用到
  * @param ref 父节点
  */
 function removePlaceholderWhenOut(ref: RefObject<HTMLDivElement>, delay: number): void {
